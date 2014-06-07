@@ -1,6 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; my-loadpackages.el
+;; `my-loadpackages.el`
 ;; to be loaded by
 ;; `init.el`
 ;;
@@ -20,3 +20,5 @@
 
 ;; Require `ess`
 (require 'ess)
+
+;; end `my-loadpackages.el`
