@@ -1,9 +1,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; `my-packages.el`
-;; to be called by `my-loadpackages.el`
+;; to be loaded by
+;; `my-loadpackages.el`
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Need Common Lisp in order
+;; for the method definied below
+;; for ensuring `my-required-packages`
+;; are installed at launch to work
+(require 'cl)
 
 (require 'package)
 ;; For using MELPA as a package archive

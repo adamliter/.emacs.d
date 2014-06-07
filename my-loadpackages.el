@@ -17,8 +17,5 @@
 (require 'magit)
 (define-key global-map (kbd "C-c m") 'magit-status)
 
-;; Require `auctex`
-(require 'auctex)
-
 ;; Require `ess`
 (require 'ess)
