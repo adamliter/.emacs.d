@@ -1,5 +1,17 @@
 # Ignore the actual packages
 # There's no need to have
 # these in the git repo
-elpa/
-auto-save-list/
+/elpa/
+/auto-save-list/
+
+# And also some files
+# to ignore because of 
+# Emacs auto-save
+/init.el~
+/.gitignore~
+/my-loadpackages.el~
+/my-packages.el~
+
+# Also ignore .DS_Store
+# from the Mac OS
+/.DS_Store
