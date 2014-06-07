@@ -1,4 +1,4 @@
-# Ignore the packages
+# Ignore the actual packages
 # There's no need to have
 # these in the git repo
 elpa/
