@@ -51,3 +51,5 @@
   (dolist (p my-required-packages)
     (when (not (package-installed-p p))
       (package-install p))))
+
+;; end `my-packages.el`
