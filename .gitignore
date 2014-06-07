@@ -1,0 +1,5 @@
+# Ignore the packages
+# There's no need to have
+# these in the git repo
+elpa/
+auto-save-list/
