@@ -3,3 +3,4 @@
 *** TODO Clean up source code for headers
 *** TODO Make kramdown footnotes in old blog posts
 *** TODO Fix glosses in old blog posts
+** TODO Add styling for code snippets
