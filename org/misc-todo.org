@@ -1,6 +1,10 @@
 * PersonalWebsite
-** TODO Clean up source code
-*** TODO Clean up source code for headers
-*** TODO Make kramdown footnotes in old blog posts
-*** TODO Fix glosses in old blog posts
-** TODO Add styling for code snippets
+** TODO [#C] Clean up source code [0%]
+*** TODO [#C] Clean up source code for headers
+*** TODO [#C] Make kramdown footnotes in old blog posts
+*** TODO [#C] Fix glosses in old blog posts
+** TODO [#C] Add styling for code snippets
+
+* LaTeX Stuff
+** TODO [#B] Learn biblatex
+** TODO [#C] Learn LaTeX 3

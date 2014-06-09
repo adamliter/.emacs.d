@@ -1,0 +1,7 @@
+* TODO [#C] Write a new CV
+
+It might be nice to write this with LaTeX3, which might make it easier to iterate over files. Then, everything could be stored in .csv files and pulled from there (and, of course, a .bib file for the articles and conference stuff).
+
+* TODO [#B] Develop a proposal for MA thesis
+  DEADLINE: <2014-08-31 Sun>
+* TODO [#A] Write manuscript for Lablish
