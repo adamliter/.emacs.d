@@ -21,8 +21,8 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 ;; List of files for global todo list
-(setq org-agenda-files (list "~/.emacs.d/org/misc-todo.org"
-			     "~/.emacs.d/org/work-todo.org"
+(setq org-agenda-files (list "~/.emacs.d/org/Miscellaneous.org"
+			     "~/.emacs.d/org/Work.org"
 			     )
       )
 
