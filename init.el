@@ -12,9 +12,11 @@
 (add-to-list 'default-frame-alist '(alpha 90 90))
 (load-theme 'manoj-dark t)
 
-;; Add texbin to path so we can compile with LaTeX
-(setenv "PATH" (concat (getenv "PATH") ":/usr/texbin"))
-(setq exec-path (append exec-path '("/usr/texbin")))
+;; Get $MANPATH, $PATH, and exec-path from
+;; the shell (but only in OS X)
+;; Requires the `exec-path-from-shell` packages
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ;; Make default compiler for LaTeX editing `pdflatex`
 (setq TeX-PDF-mode t)
