@@ -15,4 +15,10 @@
 (setq ido-everywhere t)
 (ido-mode 1) 
 
+;; org-mode
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
 ;; end `init.el`
