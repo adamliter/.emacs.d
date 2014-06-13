@@ -1,7 +1,8 @@
 * PersonalWebsite
-** TODO [#C] Clean up source code [0%]
+** TODO [#C] Clean up source code [33%]
 *** TODO [#C] Clean up source code for headers
-*** TODO [#C] Make kramdown footnotes in old blog posts
+*** DONE [#C] Make kramdown footnotes in old blog posts
+    CLOSED: [2014-06-13 Fri 02:59]
 *** TODO [#C] Fix glosses in old blog posts
 ** TODO [#C] Add styling for code snippets
 
