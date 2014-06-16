@@ -1,11 +1,18 @@
 * PersonalWebsite
-** TODO [#C] Clean up source code [33%]
-*** TODO [#C] Clean up source code for headers
+** TODO [#C] Clean up source code [75%]
+*** DONE [#C] Clean up source code for headers
+    CLOSED: [2014-06-15 Sun 19:37]
+*** DONE Make use of site.url Jekyll variable so testing web developments in future is easier
+    CLOSED: [2014-06-15 Sun 19:38]
 *** DONE [#C] Make kramdown footnotes in old blog posts
     CLOSED: [2014-06-13 Fri 02:59]
 *** TODO [#C] Fix glosses in old blog posts
 ** TODO [#C] Add styling for code snippets
-
+** TODO [#C] Add reading list
+** TODO [#C] Redo links page
+** TODO [#C] Add a spoken word page
+** TODO [#C] Update research interests
+** TODO [#C] Do the academic work page
 * LaTeX Stuff
 ** TODO [#B] Learn biblatex
 ** TODO [#C] Learn LaTeX 3
