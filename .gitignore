@@ -8,6 +8,7 @@
 # to ignore because of 
 # Emacs auto-save
 *.*~
+\#*.*\#
 
 # Also ignore .DS_Store
 # from the Mac OS
