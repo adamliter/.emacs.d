@@ -33,6 +33,7 @@
     magit ; implements some `git` functionality in Emacs
     auctex ; for editing LaTeX
     ess ; for editing R
+    markdown-mode ; for editing Markdown
     exec-path-from-shell ; provides ability to get executable paths from shell in OS X
     ) "My list of packages that I wish to ensure are always present at launch.")
 
