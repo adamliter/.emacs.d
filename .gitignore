@@ -4,6 +4,10 @@
 /elpa/
 /auto-save-list/
 
+# Ignore `tramp` connection
+# history file
+tramp
+
 # And also some files
 # to ignore because of 
 # Emacs auto-save
