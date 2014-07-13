@@ -36,6 +36,17 @@
 			     )
       )
 
+;; Set modes for some file extensions
+(setq auto-mode-alist
+      (append
+       ;; Markdown
+       '(("\\.md\\'" . markdown-mode)
+	 ("\\.markdown\\'" . markdown-mode)
+       ;; R
+	 ("\\.R\\'" . R-mode)
+	 ("\\.r\\'" . R-mode))
+       auto-mode-alist))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; end `init.el`
