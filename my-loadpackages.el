@@ -38,6 +38,11 @@
 ;; `ess` options
 (require 'ess-site)
 (setq ess-ask-for-ess-directory nil)
+; Fix ggplot indentation problem
+(add-hook 'ess-mode-hook
+          (lambda ()
+            (setq ess-first-continued-statement-offset 2)
+            (setq ess-continued-statement-offset 0)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
