@@ -17,6 +17,9 @@
 ;; Line numbers in every buffer
 (global-linum-mode 1)
 
+;; Matching parentheses
+(show-paren-mode 1)
+
 ;; IDO mode
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
