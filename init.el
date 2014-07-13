@@ -36,7 +36,7 @@
 			     )
       )
 
-;; Set modes for some file extensions
+;; Set major modes for some file extensions
 (setq auto-mode-alist
       (append
        ;; Markdown
