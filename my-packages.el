@@ -36,6 +36,7 @@
     scss-mode ; for editing Sass
     markdown-mode ; for editing Markdown
     exec-path-from-shell ; provides ability to get executable paths from shell in OS X
+    password-store ; Emacs interface for `pass` (http://www.passwordstore.org/)
     ) "My list of packages that I wish to ensure are always present at launch.")
 
 ;; Define a method to check if all packages are installed
