@@ -9,6 +9,9 @@
 ;; set for these packages
 (load "~/.emacs.d/my-loadpackages.el")
 
+;; No home screen upon opening Emacs
+(setq inhibit-splash-screen t)
+
 ;; Transparent background and dark color theme
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90 90))
