@@ -15,6 +15,24 @@
 ;; This will display the tool bar iff the argument is positive
 (tool-bar-mode 0)
 
+;; Maximize Emacs on startup
+;; see http://stackoverflow.com/a/7765654/2571049
+(when window-system
+  (let (
+        (px (display-pixel-width))
+        (py (display-pixel-height))
+        (fx (frame-char-width))
+        (fy (frame-char-height))
+        tx ty
+        )
+    ;; Next formulas discovered empiric on Windows host with default font.
+    (setq tx (- (/ px fx) 7))
+    (setq ty (- (/ py fy) 4))
+    (setq initial-frame-alist '((top . 2) (left . 2)))
+    (add-to-list 'initial-frame-alist (cons 'width tx))
+    (add-to-list 'initial-frame-alist (cons 'height ty))
+    ))
+
 ;; Transparent background and dark color theme
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90 90))
@@ -48,7 +66,7 @@
        ;; Markdown
        '(("\\.md\\'" . markdown-mode)
 	 ("\\.markdown\\'" . markdown-mode)
-       ;; R
+	 ;; R
 	 ("\\.R\\'" . R-mode)
 	 ("\\.r\\'" . R-mode))
        auto-mode-alist))
