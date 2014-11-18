@@ -34,7 +34,7 @@
     ))
 
 ;; And split the window horizontally on startup
-(split-window-right)
+;; (split-window-right)
 
 ;; Removes *messages* from the buffer.
 (setq-default message-log-max nil)
