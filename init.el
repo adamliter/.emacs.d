@@ -33,6 +33,9 @@
     (add-to-list 'initial-frame-alist (cons 'height ty))
     ))
 
+;; And split the window horizontally on startup
+(split-window-right)
+
 ;; Transparent background and dark color theme
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90 90))
