@@ -12,6 +12,9 @@
 ;; No home screen upon opening Emacs
 (setq inhibit-splash-screen t)
 
+;; This will display the tool bar iff the argument is positive
+(tool-bar-mode 0)
+
 ;; Transparent background and dark color theme
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90 90))
