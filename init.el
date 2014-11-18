@@ -36,6 +36,16 @@
 ;; And split the window horizontally on startup
 (split-window-right)
 
+;; Removes *messages* from the buffer.
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+
+;; Kill the *ESS* buffer on startup
+(kill-buffer "*ESS*")
+
+;; Remove the message from *scratch*
+(setq initial-scratch-message "")
+
 ;; Transparent background and dark color theme
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90 90))
