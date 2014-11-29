@@ -1,19 +1,37 @@
-# Ignore the actual packages
-# There's no need to have
-# these in the git repo
-/elpa/
-/auto-save-list/
+#################################################
+# Ignore .DS_Store from Mac OS
+#################################################
+*.DS_Store
 
-# Ignore `tramp` connection
-# history file
-tramp
-
-# And also some files
-# to ignore because of 
-# Emacs auto-save
+#################################################
+# Ignore auto-save files from Emacs
+#################################################
 *.*~
 \#*.*\#
 
-# Also ignore .DS_Store
-# from the Mac OS
-*.DS_Store
+#################################################
+### Ignore Emacs packages
+#################################################
+/elpa/
+/auto-save-list/
+
+#################################################
+# Ignore the `tramp` connection history file
+#################################################
+tramp
+
+#################################################
+# Ignore reftex files
+#################################################
+*.rel
+
+#################################################
+# Ignore AUCTeX auto directory
+#################################################
+auto/
+
+#################################################
+# Ignore some `org-mode` stuff
+#################################################
+.org-id-locations
+*_archive
