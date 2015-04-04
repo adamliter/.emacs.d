@@ -27,11 +27,13 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-;; Require `magit`
-;; and bind `magit-status`
-;; to `C-c m`
+;; Magit
 (require 'magit)
+;; Bind `magit-status` to `C-c m`
 (define-key global-map (kbd "C-c m") 'magit-status)
+;; Prevent warning message from version 1.4.0
+;; from showing on startup
+(setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; Require `ess`
 ;; and other
