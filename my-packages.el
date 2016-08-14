@@ -16,7 +16,7 @@
 ;; For using MELPA as a package archive
 ;; This needs to come before the call to `package-initialize`
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 ;; For old Emacs versions
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
