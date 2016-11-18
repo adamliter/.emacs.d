@@ -60,6 +60,7 @@
 
 ;; Line numbers in every buffer
 (global-linum-mode 1)
+(setq linum-format "%4d \u2502 ")
 
 ;; Matching parentheses
 (show-paren-mode 1)
