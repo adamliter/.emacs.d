@@ -30,6 +30,7 @@
 ;; want in my Emacs environment
 (defvar my-required-packages
   '(
+    fill-column-indicator ; for column rule
     magit ; implements some `git` functionality in Emacs
     auctex ; for editing LaTeX
     ess ; for editing R

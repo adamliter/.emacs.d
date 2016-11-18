@@ -1,4 +1,6 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; -*- mode: elisp; fill-column: 72 -*-
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; `my-loadpackages.el`
 ;; to be loaded by
@@ -27,6 +29,9 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+;; Fill-Column-Indicator
+(require 'fill-column-indicator)
+(setq-default fill-column 72)
 ;; Magit
 (require 'magit)
 ;; Bind `magit-status` to `C-c m`
