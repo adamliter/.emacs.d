@@ -32,6 +32,9 @@
   '(
     fill-column-indicator ; for column rule
     magit ; implements some `git` functionality in Emacs
+    gitignore-mode ; for editing gitignore files
+    gitconfig-mode ; for editing gitconfig files
+    gitattributes-mode ; for editing gitattributes files
     auctex ; for editing LaTeX
     ess ; for editing R
     scss-mode ; for editing Sass
