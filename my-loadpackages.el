@@ -41,6 +41,10 @@
 (require 'magit)
 ;; Bind `magit-status` to `C-c m`
 (define-key global-map (kbd "C-c m") 'magit-status)
+;; 50/72
+(setq git-commit-summary-max-length 50)
+;; this overrides fill-column
+(setq git-commit-fill-column 72)
 ;; Prevent warning message from version 1.4.0
 ;; from showing on startup
 (setq magit-last-seen-setup-instructions "1.4.0")
