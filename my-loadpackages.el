@@ -29,6 +29,9 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+;; elpy
+(elpy-enable)
+
 ;; Fill-Column-Indicator
 (require 'fill-column-indicator)
 (setq-default fill-column 72)
