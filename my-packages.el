@@ -37,7 +37,7 @@
     gitattributes-mode ; for editing gitattributes files
     auctex ; for editing LaTeX
     ess ; for editing R
-    elpy ; for editing Python
+    ;elpy ; for editing Python
     scss-mode ; for editing Sass
     markdown-mode ; for editing Markdown
     exec-path-from-shell ; provides ability to get executable paths from shell in OS X

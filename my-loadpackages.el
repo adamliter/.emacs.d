@@ -30,7 +30,7 @@
   (exec-path-from-shell-initialize))
 
 ;; elpy
-(elpy-enable)
+;(elpy-enable)
 
 ;; Fill-Column-Indicator
 (require 'fill-column-indicator)
