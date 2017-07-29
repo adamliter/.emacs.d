@@ -45,7 +45,7 @@
   (and (apply f args)
        (assq (car args) package-alist)))
 
-(advice-add 'package-installed-p :around 'package-from-archive)
+(advice-add 'package-installed-p :around #'package-from-archive)
 
 (use-package org
   :ensure t
@@ -57,6 +57,8 @@
          ("C-c !" . org-time-stamp-inactive))
   :mode ("\\.org$" . org-mode)
   :pin org)
+
+(advice-remove 'package-installed-p #'package-from-archive)
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))

@@ -116,7 +116,7 @@ thread.
     (and (apply f args)
          (assq (car args) package-alist)))
 
-  (advice-add 'package-installed-p :around 'package-from-archive)
+  (advice-add 'package-installed-p :around #'package-from-archive)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -130,6 +130,13 @@ thread.
            ("C-c !" . org-time-stamp-inactive))
     :mode ("\\.org$" . org-mode)
     :pin org)
+#+END_SRC
+
+The aforementioned hack can cause problems when installing/using other
+packages, however. Thus, I remove it after installing =org=.
+
+#+BEGIN_SRC emacs-lisp
+  (advice-remove 'package-installed-p #'package-from-archive)
 #+END_SRC
 
 *** [[https://github.com/purcell/exec-path-from-shell][=exec-path-from-shell=]]
