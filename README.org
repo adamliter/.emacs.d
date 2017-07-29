@@ -6,6 +6,12 @@
 #+PROPERTY: header-args:emacs-lisp :tangle init.el
 #+PROPERTY: header-args:sh :eval no :exports code
 
+This is an =org=-based rendition of my Emacs configuration. It draws
+heavily from [[http://nhoffman.github.io/.emacs.d/][Noah Hoffman's Emacs configuration]]. It also draws somewhat
+from [[https://github.com/hrs/dotfiles/][Harry R. Schwartz's Emacs configuration]].
+
+#+TOC: headlines 1
+
 * Initial setup
 * Startup
 
