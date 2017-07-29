@@ -1,29 +1,100 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Adam Liter's Emacs initialization file
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(unless (>= emacs-major-version 24)
+  (error "Emacs version 24 or higher is required"))
 
-;; Load the Emacs pacakges that I want
-;; This will also load any options I have
-;; set for these packages
+(message "Loading ~/.emacs.d/init.el")
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (setq package-archives
+        '(("ELPA" . "http://tromey.com/elpa/")
+          ("gnu" . "http://elpa.gnu.org/packages/")
+          ("melpa" . "http://melpa.org/packages/")
+          ("melpa-stable" . "http://stable.melpa.org/packages/")
+          ("marmalade" . "http://marmalade-repo.org/packages/")
+          ("org" . "http://orgmode.org/elpa/")
+          ("elpy" . "http://jorgenschaefer.github.io/packages/")
+          ))
 
-(load "~/.emacs.d/my-loadpackages.el")
+  ;; Check if we're on Emacs 24.4 or newer, if so, use the pinned package feature
+  (when (boundp 'package-pinned-packages)
+    (setq package-pinned-packages
+          '((org . "org")
+            (magit . "melpa-stable")
+            (markdown-mode . "melpa-stable")
+            )))
 
-;; No home screen upon opening Emacs
+  (package-initialize))
+
+(setq package-archive-priorities
+      '(("org" . 30)
+        ("elpy" . 30)
+        ("melpa-stable" . 20)
+        ("marmalade" . 10)
+        ("gnu" . 10)
+        ("melpa" . 5)))
+
+(setq package-menu-hide-low-priority t)
+
+(unless (package-installed-p 'use-package)
+  (message "** bootstrapping the installation of use-package")
+  (package-refresh-contents)
+  (package-install 'use-package)
+  (message "** successfully installed use-package"))
+
+(defun package-from-archive (f &rest args)
+  (and (apply f args)
+       (assq (car args) package-alist)))
+
+(advice-add 'package-installed-p :around 'package-from-archive)
+
+(use-package org
+  :ensure t
+  :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         ("C-c b" . org-iswitchb)
+         :map org-mode-map
+         ("C-c !" . org-time-stamp-inactive))
+  :mode ("\\.org$" . org-mode)
+  :pin org)
+
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns))
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
+(use-package fill-column-indicator
+  :ensure t
+  :config
+  (setq-default fill-column 72)
+  (add-hook 'markdown-mode-hook 'fci-mode))
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.mdown\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init
+  (setq markdown-command "multimarkdown"))
+
 (setq inhibit-splash-screen t)
 
-;; This will display the tool bar iff the argument is positive
 (tool-bar-mode 0)
 
-;; Maximize Emacs on startup
-;; see http://stackoverflow.com/a/7765654/2571049
+(menu-bar-mode 0)
+
+(scroll-bar-mode 0)
+
+(setq initial-scratch-message nil)
+
+(load-theme 'manoj-dark t)
+
+(set-frame-parameter (selected-frame) 'alpha '(90 90))
+(add-to-list 'default-frame-alist '(alpha 90 90))
+
 (when window-system
   (let (
         (px (display-pixel-width))
@@ -32,82 +103,22 @@
         (fy (frame-char-height))
         tx ty
         )
-    ;; Next formulas discovered empiric on Windows host with default font.
     (setq tx (- (/ px fx) 7))
     (setq ty (- (/ py fy) 4))
     (setq initial-frame-alist '((top . 2) (left . 2)))
     (add-to-list 'initial-frame-alist (cons 'width tx))
-    (add-to-list 'initial-frame-alist (cons 'height ty))
-    ))
+    (add-to-list 'initial-frame-alist (cons 'height ty))))
 
-;; And split the window horizontally on startup
-;; (split-window-right)
-
-;; Removes *messages* from the buffer.
-(setq-default message-log-max nil)
-(kill-buffer "*Messages*")
-
-;; Kill the *ESS* buffer on startup
-(kill-buffer "*ESS*")
-
-;; Remove the message from *scratch*
-(setq initial-scratch-message "")
-
-;; Transparent background and dark color theme
-(set-frame-parameter (selected-frame) 'alpha '(90 90))
-(add-to-list 'default-frame-alist '(alpha 90 90))
-(load-theme 'manoj-dark t)
-
-;; Line numbers in every buffer
 (global-linum-mode 1)
 (setq linum-format "%4d \u2502")
 
-;; Matching parentheses
+(setq column-number-mode t)
+
 (show-paren-mode 1)
 
-;; IDO mode
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
+(setq-default indent-tabs-mode nil)
 
-;; org-mode
-(require 'org)
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-;; List of files for global todo list
-(setq org-agenda-files (list "~/.emacs.d/org/Misc.org"
-			     "~/.emacs.d/org/Work.org"
-			     )
-      )
+(setq require-final-newline t)
 
-;; Set major modes for some file extensions
-(setq auto-mode-alist
-      (append
-       ;; Markdown
-       '(("\\.md\\'" . markdown-mode)
-	 ("\\.markdown\\'" . markdown-mode)
-	 ;; R
-	 ("\\.R\\'" . R-mode)
-	 ("\\.r\\'" . R-mode))
-       auto-mode-alist))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; end `init.el`
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (fill-column-indicator scss-mode password-store markdown-mode magit exec-path-from-shell ess auctex))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq delete-trailing-lines nil)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)

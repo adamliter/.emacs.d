@@ -1,0 +1,311 @@
+#+TITLE: Adam Liter's init.el
+#+AUTHOR: Adam Liter
+#+EMAIL: emacs@adamliter.org
+
+#+LANGUAGE: en
+#+PROPERTY: header-args:emacs-lisp :tangle init.el
+#+PROPERTY: header-args:sh :eval no :exports code
+
+* Initial setup
+* Startup
+
+The =init.el= file produced by this =init.org= file is intended to only
+be used with versions of Emacs more recent than 24.x.
+
+#+BEGIN_SRC emacs-lisp
+  (unless (>= emacs-major-version 24)
+    (error "Emacs version 24 or higher is required"))
+#+END_SRC
+
+Let's print a loading message at startup.
+
+#+BEGIN_SRC emacs-lisp
+  (message "Loading ~/.emacs.d/init.el")
+#+END_SRC
+
+* Packages
+
+** Package archives
+
+The default package archive is GNU's ELPA. That is, the default value of
+~package-archives~ is ~(("gnu" . "http://elpa.gnu.org/packages/"))~.
+
+There are several other package archives to add, however. But, in Emacs
+versions 24.x, there is a problem in that there is no way to set the
+priority of package archives. With Emacs >= 24.4, it is at least
+possible to a "pin" a package to a certain repository.
+
+#+BEGIN_SRC emacs-lisp
+  (when (>= emacs-major-version 24)
+    (require 'package)
+    (setq package-archives
+          '(("ELPA" . "http://tromey.com/elpa/")
+            ("gnu" . "http://elpa.gnu.org/packages/")
+            ("melpa" . "http://melpa.org/packages/")
+            ("melpa-stable" . "http://stable.melpa.org/packages/")
+            ("marmalade" . "http://marmalade-repo.org/packages/")
+            ("org" . "http://orgmode.org/elpa/")
+            ("elpy" . "http://jorgenschaefer.github.io/packages/")
+            ))
+
+    ;; Check if we're on Emacs 24.4 or newer, if so, use the pinned package feature
+    (when (boundp 'package-pinned-packages)
+      (setq package-pinned-packages
+            '((org . "org")
+              (magit . "melpa-stable")
+              (markdown-mode . "melpa-stable")
+              )))
+
+    (package-initialize))
+#+END_SRC
+
+However, starting with Emacs 25.1, it is possible to assign a priority
+to a package archive, such that packages in higher priority package
+archives will be used instead of packages in lower priority package
+archives.
+
+#+BEGIN_SRC emacs-lisp
+  (setq package-archive-priorities
+        '(("org" . 30)
+          ("elpy" . 30)
+          ("melpa-stable" . 20)
+          ("marmalade" . 10)
+          ("gnu" . 10)
+          ("melpa" . 5)))
+
+  (setq package-menu-hide-low-priority t)
+#+END_SRC
+
+** My packages
+*** [[https://github.com/jwiegley/use-package][=use-package=]]
+
+This =init.el= file uses the =use-package= package in order to bootstrap
+the installation of all Emacs packages that I use, since they can be
+installed if they aren't already by setting ~:ensure t~. However, in
+order for this to work, =use-package= itself first needs to be
+installed.
+
+#+BEGIN_SRC emacs-lisp
+  (unless (package-installed-p 'use-package)
+    (message "** bootstrapping the installation of use-package")
+    (package-refresh-contents)
+    (package-install 'use-package)
+    (message "** successfully installed use-package"))
+#+END_SRC
+
+*** [[http://orgmode.org/][=org=]]
+
+Since =org= comes with Emacs by default, now, =package.el= doesn't
+install it from an archive because it is already available. Thus, even
+when using =use-package='s ~:ensure t~ for =org=, the newer version of
+the package from the =org= package archive is not installed.
+
+The following code is a hack around this problem in that it modifies
+~package-installed-p~ in order to check whether a package was downloaded
+and installed via =package.el=. See [[https://github.com/jwiegley/use-package/issues/319#issuecomment-185979556][this suggestion]] in a GitHub issue
+thread.
+
+#+BEGIN_SRC emacs-lisp
+  (defun package-from-archive (f &rest args)
+    (and (apply f args)
+         (assq (car args) package-alist)))
+
+  (advice-add 'package-installed-p :around 'package-from-archive)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :ensure t
+    :bind (("C-c l" . org-store-link)
+           ("C-c a" . org-agenda)
+           ("C-c c" . org-capture)
+           ("C-c b" . org-iswitchb)
+           :map org-mode-map
+           ("C-c !" . org-time-stamp-inactive))
+    :mode ("\\.org$" . org-mode)
+    :pin org)
+#+END_SRC
+
+*** [[https://github.com/purcell/exec-path-from-shell][=exec-path-from-shell=]]
+
+Get ~$MANPATH~, ~$PATH~, and exec-path from the shell (but only in
+macOS).
+
+#+BEGIN_SRC emacs-lisp
+  (use-package exec-path-from-shell
+    :if (memq window-system '(mac ns))
+    :ensure t
+    :config
+    (exec-path-from-shell-initialize))
+#+END_SRC
+
+*** [[https://github.com/alpaker/Fill-Column-Indicator][=fill-column-indicator=]]
+
+I use =Fill-Column-Indicator= to help wrap my writing and code at
+appropriate points. I'd also like to enable the column rule by default
+in ~markdown-mode~. I don't enable it by default for =org= because the
+column rule causes problems for =org= commands like ~M-<RET>~
+(~org-insert-heading~) when run in the context of a list item. I'm not
+entirely sure what the problem is, but it causes the point to end up at
+the end of the line, after the column rule.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package fill-column-indicator
+    :ensure t
+    :config
+    (setq-default fill-column 72)
+    (add-hook 'markdown-mode-hook 'fci-mode))
+#+END_SRC
+
+*** [[http://jblevins.org/projects/markdown-mode/][=markdown-mode=]]
+
+I use =markdown-mode= for editing files that end in =.md=, =.mdown=, or
+=.markdown=. Moreover, =gfm-mode= (another major mode provided by this
+package) is used for editing files called =README.md= in particular,
+which is generally the default name for a README file in a GitHub repo.
+
+Setting the ~markdown-command~ to ~multimarkdown~ uses [[http://fletcherpenney.net/multimarkdown/][~multimarkdown~]]
+to export the Markdown file to HTML, PDF, /etc./.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :ensure t
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.mdown\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init
+    (setq markdown-command "multimarkdown"))
+#+END_SRC
+
+* Appearance
+
+** Hide some default stuff
+
+Don't display the splash screen.
+
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-splash-screen t)
+#+END_SRC
+
+Don't display the tool bar.
+
+#+BEGIN_SRC emacs-lisp
+  (tool-bar-mode 0)
+#+END_SRC
+
+Don't display the menu bar.
+
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode 0)
+#+END_SRC
+
+Don't display the scroll bar
+
+#+BEGIN_SRC emacs-lisp
+  (scroll-bar-mode 0)
+#+END_SRC
+
+Don't have a message in the scratch buffer.
+
+#+BEGIN_SRC emacs-lisp
+  (setq initial-scratch-message nil)
+#+END_SRC
+
+** Colors (theme) and transparency
+
+Use the =manoj-dark= theme.
+
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'manoj-dark t)
+#+END_SRC
+
+Use a transparent background.
+
+#+BEGIN_SRC emacs-lisp
+  (set-frame-parameter (selected-frame) 'alpha '(90 90))
+  (add-to-list 'default-frame-alist '(alpha 90 90))
+#+END_SRC
+
+** Frames
+
+Maximize Emacs on startup. See
+http://stackoverflow.com/a/7765654/2571049
+
+#+BEGIN_SRC emacs-lisp
+  (when window-system
+    (let (
+          (px (display-pixel-width))
+          (py (display-pixel-height))
+          (fx (frame-char-width))
+          (fy (frame-char-height))
+          tx ty
+          )
+      (setq tx (- (/ px fx) 7))
+      (setq ty (- (/ py fy) 4))
+      (setq initial-frame-alist '((top . 2) (left . 2)))
+      (add-to-list 'initial-frame-alist (cons 'width tx))
+      (add-to-list 'initial-frame-alist (cons 'height ty))))
+#+END_SRC
+
+** Buffers
+
+Have line numbers in every buffer, with 4 digits and [[http://www.fileformat.info/info/unicode/char/2502/index.htm][=\u2502=]] as a
+separator.
+
+#+BEGIN_SRC emacs-lisp
+  (global-linum-mode 1)
+  (setq linum-format "%4d \u2502")
+#+END_SRC
+
+** Mode line
+
+Display the line and column numbers in the mode line.
+
+#+BEGIN_SRC emacs-lisp
+  (setq column-number-mode t)
+#+END_SRC
+
+* Editing
+
+Show matching parentheses.
+
+#+BEGIN_SRC emacs-lisp
+  (show-paren-mode 1)
+#+END_SRC
+
+Don't use tabs! (Note that ~setq-default~ only sets the value of
+~indent-tabs-mode~ if it isn't already set by something else in a local
+buffer. A more agressive stance against tabs would be
+~(setq indent-tabs-mode nil)~, but there might be some cases where tabs
+are actually wanted (e.g., makefiles), so I'd rather not do that.)
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode nil)
+#+END_SRC
+
+* Exiting and saving
+
+** Whitespace
+
+Ensure that a file ends with a newline.
+
+#+BEGIN_SRC emacs-lisp
+  (setq require-final-newline t)
+#+END_SRC
+
+Delete all trailing white space when saving, except for trailing lines
+at the end of the file.
+
+#+BEGIN_SRC emacs-lisp
+  (setq delete-trailing-lines nil)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
+
+# Local Variables:
+# mode: org
+# coding: utf-8
+# fill-column: 72
+# indent-tabs-mode: nil
+# End:
