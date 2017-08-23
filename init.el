@@ -84,7 +84,7 @@
           ("exec-path-from-shell"        . "https://github.com/purcell/exec-path-from-shell")
           ("magit"                       . "https://magit.vc/")
           ;; General tech stuff
-          ("reattach-to-user-name-space" . "https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard")))
+          ("tmux-macos-pasteboard"       . "https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard")))
     (setq org-directory "~/org")
     (setq org-agenda-files '("~/org"))
     (setq org-todo-keywords
