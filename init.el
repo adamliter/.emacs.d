@@ -76,6 +76,9 @@
           ("adamliter-tex-sx"            . "https://tex.stackexchange.com/users/32888/adam-liter")
           ("adamliter-twitter"           . "https://twitter.com/adam_liter")
           ("latex-workshop"              . "http://bit.ly/latex-workshop")
+          ;; Referral links
+          ("linode-ref"                  . "https://www.linode.com/?r=54ae7f8d79dc2dcea5d7778008242b6be864a8cf")
+          ("fastmail-ref"                . "https://www.fastmail.com/?STKI=15818913")
           ;; Emacs packages
           ("use-package"                 . "https://github.com/jwiegley/use-package")
           ("org"                         . "http://orgmode.org/")
