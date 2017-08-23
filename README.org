@@ -83,7 +83,7 @@ archives.
 #+END_SRC
 
 ** My packages
-*** [[https://github.com/jwiegley/use-package][=use-package=]]
+*** [[use-package][=use-package=]]
 
 This =init.el= file uses the =use-package= package in order to bootstrap
 the installation of all Emacs packages that I use, since they can be
@@ -99,7 +99,7 @@ installed.
     (message "** successfully installed use-package"))
 #+END_SRC
 
-*** [[http://orgmode.org/][=org=]]
+*** [[org][=org=]]
 
 Since =org= comes with Emacs by default, now, =package.el= doesn't
 install it from an archive because it is already available. Thus, even
@@ -108,7 +108,7 @@ the package from the =org= package archive is not installed.
 
 The following code is a hack around this problem in that it modifies
 ~package-installed-p~ in order to check whether a package was downloaded
-and installed via =package.el=. See [[https://github.com/jwiegley/use-package/issues/319#issuecomment-185979556][this suggestion]] in a GitHub issue
+and installed via =package.el=. See [[use-package:/issues/319#issuecomment-185979556][this suggestion]] in a GitHub issue
 thread.
 
 #+BEGIN_SRC emacs-lisp
@@ -191,7 +191,7 @@ installing/using other packages, I remove it after installing =org=.
   (advice-remove 'package-installed-p #'package-from-archive)
 #+END_SRC
 
-*** [[https://github.com/purcell/exec-path-from-shell][=exec-path-from-shell=]]
+*** [[exec-path-from-shell][=exec-path-from-shell=]]
 
 Get ~$MANPATH~, ~$PATH~, and exec-path from the shell (but only in
 macOS).
@@ -204,7 +204,7 @@ macOS).
     (exec-path-from-shell-initialize))
 #+END_SRC
 
-*** [[https://github.com/alpaker/Fill-Column-Indicator][=fill-column-indicator=]]
+*** [[fci][=fill-column-indicator=]]
 
 I use =Fill-Column-Indicator= to help wrap my writing and code at
 appropriate points. I'd also like to enable the column rule by default
@@ -222,7 +222,7 @@ the end of the line, after the column rule.
     (add-hook 'markdown-mode-hook 'fci-mode))
 #+END_SRC
 
-*** [[http://jblevins.org/projects/markdown-mode/][=markdown-mode=]]
+*** [[markdown-mode][=markdown-mode=]]
 
 I use =markdown-mode= for editing files that end in =.md=, =.mdown=, or
 =.markdown=. Moreover, =gfm-mode= (another major mode provided by this
