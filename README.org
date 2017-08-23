@@ -3,7 +3,7 @@
 #+EMAIL: emacs@adamliter.org
 
 #+LANGUAGE: en
-#+PROPERTY: header-args:emacs-lisp :tangle init.el
+#+PROPERTY: header-args:emacs-lisp :tangle init.el :padline no
 #+PROPERTY: header-args:sh :eval no :exports code
 
 This is an =org=-based rendition of my Emacs configuration. It draws
