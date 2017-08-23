@@ -119,6 +119,16 @@ thread.
   (advice-add 'package-installed-p :around #'package-from-archive)
 #+END_SRC
 
+The following defines some =org= keybindings that I want to be available
+globally. Next, it define ~org-link-abbrev-alist~ to include some links
+that I'd like to be available to all of my =org= files. It also sets the
+default ~org-directory~ to =~/org=, which is where my =org= submodule in
+my [[config-files][=config-files=]] repo is symlinked to. This also sets up all =.org=
+files in the =~/org= directory to be agenda files. Next, it sets up the
+keywords that I want to use for TODO items, the fact that I want to log
+changes to TODO items in a drawer, the refile targets, and the
+~org-default-notes-file~, which is used for ~org-capture~.
+
 #+BEGIN_SRC emacs-lisp
   (use-package org
     :ensure t
@@ -126,14 +136,56 @@ thread.
            ("C-c a" . org-agenda)
            ("C-c c" . org-capture)
            ("C-c b" . org-iswitchb)
-           :map org-mode-map
-           ("C-c !" . org-time-stamp-inactive))
-    :mode ("\\.org$" . org-mode)
-    :pin org)
+           ("C-c C-w" . org-refile)
+           ("C-c C-x C-o" . org-clock-out))
+    :mode ("\\.org\\'" . org-mode)
+    :config
+    (setq org-link-abbrev-alist
+          '(;; General stuff on the internet
+            ("google"                      . "http://www.google.com/search?q=")
+            ("startpage"                   . "https://www.startpage.com/do/search?query=")
+            ("tex-sx-search"               . "https://tex.stackexchange.com/search?q=")
+            ("gh-gitignore"                . "https://github.com/github/gitignore")
+            ("gh-gitignore-mac"            . "https://github.com/github/gitignore/blob/master/Global/macOS.gitignore")
+            ("gh-gitignore-linux"          . "https://github.com/github/gitignore/blob/master/Global/Linux.gitignore")
+            ("gh-gitignore-windows"        . "https://github.com/github/gitignore/blob/master/Global/Windows.gitignore")
+            ("gh-gitignore-emacs"          . "https://github.com/github/gitignore/blob/master/Global/Emacs.gitignore")
+            ("gh-gitignore-tex"            . "https://github.com/github/gitignore/blob/master/TeX.gitignore")
+            ("gh-gitignore-python"         . "https://github.com/github/gitignore/blob/master/Python.gitignore")
+            ("gh-gitignore-r"              . "https://github.com/github/gitignore/blob/master/R.gitignore")
+            ;; Personal stuff on the internet
+            ("adamliter-web"               . "https://www.adamliter.org")
+            ("adamlitercv"                 . "https://www.adamliter.org/content/adamlitercv.pdf")
+            ("atomicwriting"               . "https://www.atomicwriting.com")
+            ("adamliter-github"            . "https://github.com/adamliter")
+            ("config-files"                . "https://github.com/adamliter/config-files")
+            ("emacs-d"                     . "https://github.com/adamliter/emacs.d")
+            ("adamliter-keybase"           . "https://keybase.io/adamliter")
+            ("adamliter-se"                . "https://stackexchange.com/users/2978319/adam-liter?tab=accounts")
+            ("adamliter-tex-sx"            . "https://tex.stackexchange.com/users/32888/adam-liter")
+            ("adamliter-twitter"           . "https://twitter.com/adam_liter")
+            ("latex-workshop"              . "http://bit.ly/latex-workshop")
+            ;; Emacs packages
+            ("use-package"                 . "https://github.com/jwiegley/use-package")
+            ("org"                         . "http://orgmode.org/")
+            ("fci"                         . "https://github.com/alpaker/Fill-Column-Indicator")
+            ("markdown-mode"               . "http://jblevins.org/projects/markdown-mode/")
+            ("exec-path-from-shell"        . "https://github.com/purcell/exec-path-from-shell")
+            ("magit"                       . "https://magit.vc/")
+            ;; General tech stuff
+            ("reattach-to-user-name-space" . "https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard")))
+      (setq org-directory "~/org")
+      (setq org-agenda-files '("~/org"))
+      (setq org-todo-keywords
+            '((sequence "TODO(t)" "FEEDBACK(f@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+      (setq org-log-into-drawer t)
+      (setq org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
+      (setq org-default-notes-file (concat org-directory "/refile.org"))
+      :pin org)
 #+END_SRC
 
-The aforementioned hack can cause problems when installing/using other
-packages, however. Thus, I remove it after installing =org=.
+Finally, because the aforementioned hack can cause problems when
+installing/using other packages, I remove it after installing =org=.
 
 #+BEGIN_SRC emacs-lisp
   (advice-remove 'package-installed-p #'package-from-archive)
