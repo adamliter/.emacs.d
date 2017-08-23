@@ -271,6 +271,9 @@ file.
 
 #+END_SRC
 
+My snippets are stored in =~/.emacs.d/snippets=, which is one of the
+default locations that is checked for snippets (see ~yas-snippet-dirs~).
+
 * Appearance
 
 ** Hide some default stuff
