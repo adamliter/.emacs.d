@@ -85,6 +85,7 @@
           ("fci"                         . "https://github.com/alpaker/Fill-Column-Indicator")
           ("markdown-mode"               . "http://jblevins.org/projects/markdown-mode/")
           ("exec-path-from-shell"        . "https://github.com/purcell/exec-path-from-shell")
+          ("yasnippet"                   . "http://joaotavora.github.io/yasnippet/")
           ("magit"                       . "https://magit.vc/")
           ;; General tech stuff
           ("tmux-macos-pasteboard"       . "https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard")))
@@ -116,6 +117,19 @@
          ("\\.markdown\\'" . markdown-mode))
   :init
   (setq markdown-command "multimarkdown"))
+(use-package yasnippet
+  :ensure t
+  :demand t
+  :mode
+  ("\\.yasnippet\\'" . snippet-mode)
+  :init
+  (progn
+    (add-hook 'after-save-hook
+              (lambda ()
+                (when (eql major-mode 'snippet-mode)
+                  (yas-reload-all)))))
+  :config
+  (yas-global-mode t))
 (setq inhibit-splash-screen t)
 (tool-bar-mode 0)
 (menu-bar-mode 0)

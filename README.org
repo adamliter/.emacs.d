@@ -174,6 +174,7 @@ changes to TODO items in a drawer, the refile targets, and the
             ("fci"                         . "https://github.com/alpaker/Fill-Column-Indicator")
             ("markdown-mode"               . "http://jblevins.org/projects/markdown-mode/")
             ("exec-path-from-shell"        . "https://github.com/purcell/exec-path-from-shell")
+            ("yasnippet"                   . "http://joaotavora.github.io/yasnippet/")
             ("magit"                       . "https://magit.vc/")
             ;; General tech stuff
             ("tmux-macos-pasteboard"       . "https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard")))
@@ -245,6 +246,29 @@ to export the Markdown file to HTML, PDF, /etc./.
            ("\\.markdown\\'" . markdown-mode))
     :init
     (setq markdown-command "multimarkdown"))
+#+END_SRC
+
+*** [[yasnippet][=YASnippet=]]
+
+This sets up =yasnippet=. ~:demand t~ ensures it is loaded at startup,
+and the ~after-save-hook~ reloads all snippets after saving a snippet
+file.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :demand t
+    :mode
+    ("\\.yasnippet\\'" . snippet-mode)
+    :init
+    (progn
+      (add-hook 'after-save-hook
+                (lambda ()
+                  (when (eql major-mode 'snippet-mode)
+                    (yas-reload-all)))))
+    :config
+    (yas-global-mode t))
+
 #+END_SRC
 
 * Appearance
