@@ -195,6 +195,43 @@ installing/using other packages, I remove it after installing =org=.
   (advice-remove 'package-installed-p #'package-from-archive)
 #+END_SRC
 
+*** =ibuffer=
+
+This sets up ~ibuffer~ as a replacement for ~list-buffers~. Buffers will
+be sorted by major mode in the ibuffer window (though I should
+investigate both [[https://github.com/purcell/ibuffer-vc][=ibuffer-vc=]] and [[https://github.com/purcell/ibuffer-projectile][=ibuffer-projectile=]]). Moreover,
+setting ~ibuffer-expert~ to ~t~ will prevent prompting for deletion of
+an unmodified buffer. This setup also prevents the display of empty
+filter groups, and, finally, it displays file sizes in a human readable
+format.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ibuffer
+    :ensure t
+    :bind (([remap list-buffers] . ibuffer))
+    :config
+    (setq ibuffer-default-sorting-mode 'major-mode)
+    (setq ibuffer-expert t)
+    (setq ibuffer-show-empty-filter-groups nil)
+    (define-ibuffer-column size-h
+      (:name "Size" :inline t)
+      (cond
+       ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+       ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+       ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+       (t (format "%8d" (buffer-size)))))
+    (setq ibuffer-formats
+          '((mark modified read-only " "
+                  (name 18 18 :left :elide)
+                  " "
+                  (size-h 9 -1 :right)
+                  " "
+                  (mode 16 16 :left :elide)
+                  " "
+                  filename-and-process))))
+
+#+END_SRC
+
 *** [[exec-path-from-shell][=exec-path-from-shell=]]
 
 Get ~$MANPATH~, ~$PATH~, and exec-path from the shell (but only in
