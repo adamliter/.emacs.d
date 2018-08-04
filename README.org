@@ -426,13 +426,6 @@ Ensure that a file ends with a newline.
   (setq require-final-newline t)
 #+END_SRC
 
-Delete all trailing white space when saving, except for trailing lines
-at the end of the file.
-
-#+BEGIN_SRC emacs-lisp
-  (setq delete-trailing-lines nil)
-  (add-hook 'before-save-hook 'delete-trailing-whitespace)
-#+END_SRC
 
 # Local Variables:
 # mode: org
