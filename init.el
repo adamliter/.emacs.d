@@ -138,19 +138,6 @@
 (load-theme 'manoj-dark t)
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90 90))
-(when window-system
-  (let (
-        (px (display-pixel-width))
-        (py (display-pixel-height))
-        (fx (frame-char-width))
-        (fy (frame-char-height))
-        tx ty
-        )
-    (setq tx (- (/ px fx) 7))
-    (setq ty (- (/ py fy) 4))
-    (setq initial-frame-alist '((top . 2) (left . 2)))
-    (add-to-list 'initial-frame-alist (cons 'width tx))
-    (add-to-list 'initial-frame-alist (cons 'height ty))))
 (global-linum-mode 1)
 (setq linum-format "%4d \u2502")
 (setq column-number-mode t)
