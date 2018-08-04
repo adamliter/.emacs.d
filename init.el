@@ -107,7 +107,11 @@
   (setq magit-log-arguments (quote ("--graph"
                                     "--decorate"
                                     "--color")))
-  (setq magit-commit-arguments (quote ("--gpg-sign=98723A2089026CD6"))))
+  (setq magit-commit-arguments (quote ("--gpg-sign=98723A2089026CD6")))
+  (setq magit-repository-directories
+        '(("~/projects" . 3)
+          ("~/config-files" . 1)
+          ("~/Dropbox/linguistics" . 1))))
 (use-package which-key
   :ensure t
   :config
