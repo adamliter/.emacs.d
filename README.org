@@ -232,6 +232,26 @@ format.
 
 #+END_SRC
 
+*** [[https://github.com/abo-abo/ace-window][=ace-window=]]
+
+This sets up =ace-window= as a replacement for ~other-window~. I've also
+set a larger font size for the ~aw-keys~ that get displayed in each
+window. Finally, there is a bug in the MELPA Stable version of this
+package at the time of updating this file (2018-08-03, version 0.9.0),
+so I've pinned this package to MELPA for the time being, since the bug
+does not exist in that version of this package.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ace-window
+    :ensure t
+    :bind (([remap other-window] . ace-window))
+    :config
+    (custom-set-faces
+     '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+    :pin melpa)
+#+END_SRC
+
 *** [[exec-path-from-shell][=exec-path-from-shell=]]
 
 Get ~$MANPATH~, ~$PATH~, and exec-path from the shell (but only in

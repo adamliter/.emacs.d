@@ -121,6 +121,14 @@
                 (mode 16 16 :left :elide)
                 " "
                 filename-and-process))))
+(use-package ace-window
+  :ensure t
+  :bind (([remap other-window] . ace-window))
+  :config
+  (custom-set-faces
+   '(aw-leading-char-face
+     ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+  :pin melpa)
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :ensure t
