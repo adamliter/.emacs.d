@@ -195,6 +195,23 @@ installing/using other packages, I remove it after installing =org=.
   (advice-remove 'package-installed-p #'package-from-archive)
 #+END_SRC
 
+*** [[https://magit.vc/][=magit=]]
+
+This package is an interface to =git= in Emacs.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :bind (("C-x g" . magit-status))
+    :config
+    (setq git-commit-summary-max-length 50)
+    (setq git-commit-fill-column 72)
+    (setq magit-log-arguments (quote ("--graph"
+                                      "--decorate"
+                                      "--color")))
+    (setq magit-commit-arguments (quote ("--gpg-sign=98723A2089026CD6"))))
+#+END_SRC
+
 *** [[https://github.com/justbur/emacs-which-key][=which-key=]]
 
 This package shows you possible keybinding continuations after a delay,
