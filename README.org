@@ -195,6 +195,18 @@ installing/using other packages, I remove it after installing =org=.
   (advice-remove 'package-installed-p #'package-from-archive)
 #+END_SRC
 
+*** [[https://github.com/justbur/emacs-which-key][=which-key=]]
+
+This package shows you possible keybinding continuations after a delay,
+which is useful in case you forget keybindings.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode))
+#+END_SRC
+
 *** =ibuffer=
 
 This sets up ~ibuffer~ as a replacement for ~list-buffers~. Buffers will

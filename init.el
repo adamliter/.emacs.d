@@ -98,6 +98,10 @@
     (setq org-default-notes-file (concat org-directory "/refile.org"))
     :pin org)
 (advice-remove 'package-installed-p #'package-from-archive)
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
 (use-package ibuffer
   :ensure t
   :bind (([remap list-buffers] . ibuffer))
@@ -182,10 +186,10 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ace-window yasnippet use-package org markdown-mode fill-column-indicator exec-path-from-shell avy))))
+    (which-key ace-window yasnippet use-package org markdown-mode fill-column-indicator exec-path-from-shell avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
