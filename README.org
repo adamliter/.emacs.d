@@ -39,7 +39,7 @@ The default package archive is GNU's ELPA. That is, the default value of
 There are several other package archives to add, however. But, in Emacs
 versions 24.x, there is a problem in that there is no way to set the
 priority of package archives. With Emacs >= 24.4, it is at least
-possible to a "pin" a package to a certain repository.
+possible to "pin" a package to a certain repository.
 
 #+BEGIN_SRC emacs-lisp
   (when (>= emacs-major-version 24)
@@ -120,7 +120,7 @@ thread.
 #+END_SRC
 
 The following defines some =org= keybindings that I want to be available
-globally. Next, it define ~org-link-abbrev-alist~ to include some links
+globally. Next, it defines ~org-link-abbrev-alist~ to include some links
 that I'd like to be available to all of my =org= files. It also sets the
 default ~org-directory~ to =~/org=, which is where my =org= submodule in
 my [[config-files][=config-files=]] repo is symlinked to. This also sets up all =.org=
