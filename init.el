@@ -159,6 +159,14 @@
   :ensure t
   :config
   (add-hook 'term-mode-hook #'eterm-256color-mode))
+(use-package all-the-icons
+  :ensure t)
+(use-package spaceline
+  :ensure t)
+(use-package spaceline-all-the-icons
+  :ensure t
+  :after spaceline
+  :config (spaceline-all-the-icons-theme))
 (use-package fill-column-indicator
   :ensure t
   :config
@@ -200,3 +208,17 @@
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
 (setq require-final-newline t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (spaceline-all-the-icons spaceline all-the-icons yasnippet which-key use-package org multi-term markdown-mode magit fill-column-indicator exec-path-from-shell eterm-256color ace-window))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

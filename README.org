@@ -321,6 +321,36 @@ sequences in shells run inside of Emacs buffers.
     (add-hook 'term-mode-hook #'eterm-256color-mode))
 #+END_SRC
 
+*** [[https://github.com/domtronn/all-the-icons.el][=all-the-icons=]]
+
+This sets up the =all-the-icons= package, which is used by the
+=spaceline-all-the-icons= spaceline mode.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons
+    :ensure t)
+#+END_SRC
+
+*** [[https://github.com/TheBB/spaceline][=spaceline=]]
+
+This installs =spaceline=
+
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline
+    :ensure t)
+#+END_SRC
+
+*** [[https://github.com/domtronn/spaceline-all-the-icons.el/][=spaceline-all-the-icons=]]
+
+This sets up the =spaceline-all-the-icons= theme:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline-all-the-icons
+    :ensure t
+    :after spaceline
+    :config (spaceline-all-the-icons-theme))
+#+END_SRC
+
 *** [[fci][=fill-column-indicator=]]
 
 I use =Fill-Column-Indicator= to help wrap my writing and code at
