@@ -199,6 +199,7 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (setq initial-scratch-message nil)
+(set-fringe-mode '(0 . 0))
 (load-theme 'manoj-dark t)
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90 90))
