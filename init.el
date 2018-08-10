@@ -148,9 +148,10 @@
      ((t (:inherit ace-jump-face-foreground :height 3.0)))))
   :pin melpa)
 (use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
   :ensure t
+  :if (memq window-system '(mac ns))
   :config
+  (setq exec-path-from-shell-variables '("PATH" "MANPATH" "GEM_HOME" "GEM_PATH"))
   (exec-path-from-shell-initialize))
 (use-package multi-term
   :ensure t)
