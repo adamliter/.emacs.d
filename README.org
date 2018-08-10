@@ -467,12 +467,12 @@ Use the =manoj-dark= theme.
 
 ** Buffers
 
-Have line numbers in every buffer, with 4 digits and [[http://www.fileformat.info/info/unicode/char/2502/index.htm][=\u2502=]] as a
-separator.
+For line numbers, use new line number support in Emacs 26 and newer;
+otherwise, no longer display line numbers.
 
 #+BEGIN_SRC emacs-lisp
-  (global-linum-mode 1)
-  (setq linum-format "%4d \u2502")
+  (when (>= emacs-major-version 26)
+    (global-display-line-numbers-mode))
 #+END_SRC
 
 ** Mode line
