@@ -152,6 +152,12 @@
   :ensure t
   :config
   (exec-path-from-shell-initialize))
+(use-package multi-term
+  :ensure t)
+(use-package eterm-256color
+  :ensure t
+  :config
+  (add-hook 'term-mode-hook #'eterm-256color-mode))
 (use-package fill-column-indicator
   :ensure t
   :config

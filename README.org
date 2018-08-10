@@ -298,6 +298,28 @@ macOS).
     (exec-path-from-shell-initialize))
 #+END_SRC
 
+*** [[https://www.emacswiki.org/emacs/MultiTerm][=multi-term=]]
+
+This installs the package =multi-term= for better management of shell
+sessions inside of Emacs buffers.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package multi-term
+    :ensure t)
+#+END_SRC
+
+*** [[https://github.com/dieggsy/eterm-256color][=eterm-256color=]]
+
+This installs the package =eterm-256color= for support of escaped color
+sequences in shells run inside of Emacs buffers.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package eterm-256color
+    :ensure t
+    :config
+    (add-hook 'term-mode-hook #'eterm-256color-mode))
+#+END_SRC
+
 *** [[fci][=fill-column-indicator=]]
 
 I use =Fill-Column-Indicator= to help wrap my writing and code at
