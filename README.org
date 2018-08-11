@@ -285,6 +285,59 @@ does not exist in that version of this package.
     :pin melpa)
 #+END_SRC
 
+*** [[https://github.com/abo-abo/swiper][=ivy=]]
+
+This installs =ivy=, which is a completion framework that basically
+replaces =ido=. Enabling =ivy-mode= sets up =ivy= completion for file
+and buffer names.
+
+Moreover, setting =ivy-use-virtual-buffers= to something that is non nil
+will include virtual buffers in the completion list.
+
+=ivy-count-format= specifies how the number of candidates and the
+current candidate are displayed.
+
+Setting =ivy-wrap= to true causes =C-n= and =C-p= to wrap
+around when cycling through candidates.
+
+Finally, I've bound =C-c C-r= to =ivy-resume=, which will resume the
+last =ivy= completion session, which is useful if you accidentally close
+it.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+    :ensure t
+    :bind (("C-c C-r" . ivy-resume))
+    :config
+    (ivy-mode t)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) ")
+    (setq ivy-wrap t))
+#+END_SRC
+
+*** [[https://github.com/abo-abo/swiper][=counsel=]]
+
+This sets up =counsel=, which provides versions of many common Emacs
+commands that use =ivy=. Enabling =counsel-mode= sets up the default
+keybindings for all of the =counsel= replacement commands.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel
+    :ensure t
+    :config
+    (counsel-mode t))
+#+END_SRC
+
+*** [[https://github.com/abo-abo/swiper][=swiper=]]
+
+This sets up =swiper=, which is an alternative to =isearch=.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :ensure t
+    :bind (("C-s" . swiper)))
+#+END_SRC
+
 *** [[exec-path-from-shell][=exec-path-from-shell=]]
 
 Get ~$MANPATH~, ~$PATH~, ~$GEM_HOME~, ~$GEM_PATH~, and exec-path from

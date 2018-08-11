@@ -147,6 +147,21 @@
    '(aw-leading-char-face
      ((t (:inherit ace-jump-face-foreground :height 3.0)))))
   :pin melpa)
+(use-package ivy
+  :ensure t
+  :bind (("C-c C-r" . ivy-resume))
+  :config
+  (ivy-mode t)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-wrap t))
+(use-package counsel
+  :ensure t
+  :config
+  (counsel-mode t))
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper)))
 (use-package exec-path-from-shell
   :ensure t
   :if (memq window-system '(mac ns))
