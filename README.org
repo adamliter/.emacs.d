@@ -417,6 +417,29 @@ file.
 My snippets are stored in =~/.emacs.d/snippets=, which is one of the
 default locations that is checked for snippets (see ~yas-snippet-dirs~).
 
+* Preferences
+
+Let's get rid of the error bell.
+
+#+BEGIN_SRC emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+END_SRC
+
+Let's make the "yes or no" prompts shorter.
+
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+Let's prevent Emacs from adding customized settings to =init.el=. The
+following will cause the customized settings to be written to a
+temporary file, effectively making the changes session local, and also
+preventing Emacs from writing anything to =init.el=.
+
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file (make-temp-file "emacs-custom"))
+#+END_SRC
+
 * Appearance
 
 ** Hide some default stuff

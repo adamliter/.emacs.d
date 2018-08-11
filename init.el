@@ -194,6 +194,9 @@
                   (yas-reload-all)))))
   :config
   (yas-global-mode t))
+(setq ring-bell-function 'ignore)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq custom-file (make-temp-file "emacs-custom"))
 (setq inhibit-splash-screen t)
 (tool-bar-mode 0)
 (menu-bar-mode 0)
