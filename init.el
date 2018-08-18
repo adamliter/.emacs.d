@@ -203,6 +203,11 @@
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
   (setq-default TeX-master nil)
+  (setq TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view)))
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools")))
+  (setq TeX-source-correlate-start-server t)
+  (add-hook 'TeX-after-compilation-finished-functions
+            #'TeX-revert-document-buffer)
   (add-to-list
    'TeX-command-list
    '("Arara"
@@ -217,6 +222,14 @@
   :after tex
   :config
   (setq reftex-plug-into-AUCTeX t))
+(use-package pdf-tools
+  :ensure t
+  :config
+  (pdf-tools-install)
+  (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
+  (add-hook 'pdf-view-mode-hook
+            (lambda ()
+              (display-line-numbers-mode -1))))
 (use-package yasnippet
   :ensure t
   :demand t
