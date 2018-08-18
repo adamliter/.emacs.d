@@ -444,6 +444,59 @@ to export the Markdown file to HTML, PDF, /etc./.
     (setq markdown-command "multimarkdown"))
 #+END_SRC
 
+*** [[https://www.gnu.org/software/auctex/][=auctex=]]
+
+This sets up AUCTeX for editing LaTeX documents. Note that the
+distributed package is called AUCTeX, but the package that you actually
+need to load is just called "tex". Thus, the loaded package is just
+=tex=, but we can set AUCTeX as the ~:ensure~ value to make sure that it
+is isntalled.
+
+~TeX-auto-save~ automatically saves the file in the buffer, and then
+~TeX-parse-self~ parsing the (saved) file so that the mode can provide
+macro and compleition information, based on the packages you're using.
+
+Setting ~TeX-master~ to ~nil~ will prompt for setting the master file,
+which is the root file that will be used when compiling the document, if
+you're using ~\include~ or ~\input~, for example.
+
+The next configuration bit sets up AUCTeX to also be able to use [[https://github.com/cereda/arara][arara]].
+
+And, finally, setting ~TeX-fold-mode~ to non nil enables the ability to
+fold stuff; moreover, setting it as part of the ~'TeX-mode-hook~ means
+that it will be available in all AUCTeX modes, since this (along with
+~text-mode-hook~ are run by each of the special AUCTeX mode hooks.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package tex
+    :ensure auctex
+    :mode ("\\.tex\\'" . TeX-latex-mode)
+    :config
+    (setq TeX-auto-save t)
+    (setq TeX-parse-self t)
+    (setq-default TeX-master nil)
+    (add-to-list
+     'TeX-command-list
+     '("Arara"
+       "arara %s"
+       TeX-run-command
+       nil                       ; ask for confirmation
+       t                         ; active in all modes
+       :help "Run Arara"))
+    (add-hook 'TeX-mode-hook (lambda ()
+                               (TeX-fold-mode 1))))
+#+END_SRC
+
+*** [[https://www.gnu.org/software/auctex/reftex.html][=reftex=]]
+
+This sets up and installs RefTeX for use with AUCTeX.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package reftex
+    :after tex
+    :config
+    (setq reftex-plug-into-AUCTeX t))
+#+END_SRC
 *** [[yasnippet][=YASnippet=]]
 
 This sets up =yasnippet=. ~:demand t~ ensures it is loaded at startup,

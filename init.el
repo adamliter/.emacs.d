@@ -196,6 +196,27 @@
          ("\\.markdown\\'" . markdown-mode))
   :init
   (setq markdown-command "multimarkdown"))
+(use-package tex
+  :ensure auctex
+  :mode ("\\.tex\\'" . TeX-latex-mode)
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil)
+  (add-to-list
+   'TeX-command-list
+   '("Arara"
+     "arara %s"
+     TeX-run-command
+     nil                       ; ask for confirmation
+     t                         ; active in all modes
+     :help "Run Arara"))
+  (add-hook 'TeX-mode-hook (lambda ()
+                             (TeX-fold-mode 1))))
+(use-package reftex
+  :after tex
+  :config
+  (setq reftex-plug-into-AUCTeX t))
 (use-package yasnippet
   :ensure t
   :demand t
