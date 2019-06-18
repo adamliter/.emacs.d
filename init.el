@@ -223,6 +223,22 @@
      nil                       ; ask for confirmation
      t                         ; active in all modes
      :help "Run Arara"))
+  (add-to-list
+   'TeX-command-list
+   '("XeLaTeX"
+     "xelatex --file-line-error %s"
+     TeX-run-command
+     nil
+     t
+     :help "Run XeLaTeX"))
+  (add-to-list
+    'TeX-command-list
+    '("LuaLaTeX"
+      "lualatex --file-line-error %s"
+      TeX-run-command
+      nil
+      t
+      :help "Run LuaLaTeX"))
   (add-hook 'TeX-mode-hook (lambda ()
                              (TeX-fold-mode 1))))
 (use-package reftex
