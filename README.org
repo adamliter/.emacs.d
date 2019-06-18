@@ -485,7 +485,7 @@ The next configuration bit sets up AUCTeX to also be able to use [[https://githu
 And, finally, setting ~TeX-fold-mode~ to non nil enables the ability to
 fold stuff; moreover, setting it as part of the ~'TeX-mode-hook~ means
 that it will be available in all AUCTeX modes, since this (along with
-~text-mode-hook~ are run by each of the special AUCTeX mode hooks.
+~text-mode-hook~) is run by each of the special AUCTeX mode hooks.
 
 #+BEGIN_SRC emacs-lisp
   (use-package tex
