@@ -98,6 +98,13 @@
     (setq org-default-notes-file (concat org-directory "/refile.org"))
     :pin org)
 (advice-remove 'package-installed-p #'package-from-archive)
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-one t)
+  (doom-themes-visual-bell-config)
+  ;;(doom-themes-treemacs-config)
+  (doom-themes-org-config))
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status))
@@ -252,7 +259,14 @@
 (scroll-bar-mode 0)
 (setq initial-scratch-message nil)
 (set-fringe-mode '(0 . 0))
-(load-theme 'manoj-dark t)
+(when
+    (and
+       (>= emacs-major-version 26)
+       (eq system-type 'darwin))
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (setq ns-use-proxy-icon nil)
+  (setq frame-title-format nil))
 (when (>= emacs-major-version 26)
   (global-display-line-numbers-mode))
 (setq column-number-mode t)

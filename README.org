@@ -195,6 +195,20 @@ installing/using other packages, I remove it after installing =org=.
   (advice-remove 'package-installed-p #'package-from-archive)
 #+END_SRC
 
+*** [[https://github.com/hlissner/emacs-doom-themes][=doom-themes=]]
+
+This sets up =doom-themes= and sets the default theme to =doom-one=.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-themes
+    :ensure t
+    :config
+    (load-theme 'doom-one t)
+    (doom-themes-visual-bell-config)
+    ;;(doom-themes-treemacs-config)
+    (doom-themes-org-config))
+#+END_SRC
+
 *** [[https://magit.vc/][=magit=]]
 
 This package is an interface to =git= in Emacs.
@@ -617,12 +631,18 @@ Don't display fringes.
   (set-fringe-mode '(0 . 0))
 #+END_SRC
 
-** Colors (theme) and transparency
-
-Use the =manoj-dark= theme.
+On a Mac (requires Emacs 26), make the titlebar transparent, set it to
+dark mode, remove the icon and title of the file.
 
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'manoj-dark t)
+  (when
+      (and
+         (>= emacs-major-version 26)
+         (eq system-type 'darwin))
+    (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+    (add-to-list 'default-frame-alist '(ns-appearance . dark))
+    (setq ns-use-proxy-icon nil)
+    (setq frame-title-format nil))
 #+END_SRC
 
 ** Buffers
