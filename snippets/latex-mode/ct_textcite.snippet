@@ -2,4 +2,4 @@
 # name: textcite \textcite
 # key: ct
 # --
-\textcite[$3]{${2:label$(unless yas-modified-p (mapconcat 'identity (reftex-citation 'dont-insert) ","))}} $0
+\textcite[$2][$3]{${1:label$(unless yas-modified-p (mapconcat 'identity (reftex-citation 'dont-insert) ","))}} $0
