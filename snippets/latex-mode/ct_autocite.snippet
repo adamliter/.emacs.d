@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: textcite \textcite
+# name: autocite \autocite
 # key: ct
 # --
-\textcite[$3]{${2:label$(unless yas-modified-p (mapconcat 'identity (reftex-citation 'dont-insert) ","))}} $0
+\autocite[$2][$3]{${1:label$(unless yas-modified-p (mapconcat 'identity (reftex-citation 'dont-insert) ","))}}$0
