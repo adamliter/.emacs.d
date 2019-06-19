@@ -250,10 +250,10 @@ This package is an interface to =git= in Emacs.
       (projectile-mode +1)
       (setq projectile-completion-system 'ivy))
 
-    (use-package counsel-projectile
-      :ensure t
-      :config
-      (counsel-projectile-mode))
+  (use-package counsel-projectile
+    :ensure t
+    :config
+    (counsel-projectile-mode))
 #+END_SRC
 
 *** [[https://github.com/Alexander-Miller/treemacs][=treemacs=]]
