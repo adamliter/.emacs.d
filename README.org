@@ -390,8 +390,8 @@ sequences in shells run inside of Emacs buffers.
 
 *** [[https://github.com/domtronn/all-the-icons.el][=all-the-icons=]]
 
-This sets up the =all-the-icons= package, which is used by the
-=spaceline-all-the-icons= spaceline mode.
+This sets up the =all-the-icons= package, which can be used by the
+=doom-themes= package to set up =treemacs=.
 
 #+BEGIN_SRC emacs-lisp
   (use-package all-the-icons
@@ -404,18 +404,13 @@ This installs =spaceline=
 
 #+BEGIN_SRC emacs-lisp
   (use-package spaceline
-    :ensure t)
-#+END_SRC
-
-*** [[https://github.com/domtronn/spaceline-all-the-icons.el/][=spaceline-all-the-icons=]]
-
-This sets up the =spaceline-all-the-icons= theme:
-
-#+BEGIN_SRC emacs-lisp
-  (use-package spaceline-all-the-icons
     :ensure t
-    :after spaceline
-    :config (spaceline-all-the-icons-theme))
+    )
+
+  (use-package spaceline-config
+    :ensure spaceline
+    :config
+    (spaceline-emacs-theme))
 #+END_SRC
 
 *** [[fci][=fill-column-indicator=]]

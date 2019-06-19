@@ -184,11 +184,13 @@
 (use-package all-the-icons
   :ensure t)
 (use-package spaceline
-  :ensure t)
-(use-package spaceline-all-the-icons
   :ensure t
-  :after spaceline
-  :config (spaceline-all-the-icons-theme))
+  )
+
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (spaceline-emacs-theme))
 (use-package fill-column-indicator
   :ensure t
   :config
