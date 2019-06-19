@@ -127,7 +127,8 @@
   :bind (("C-c p" . projectile-command-map))
   :config
   (projectile-mode +1)
-  (setq projectile-completion-system 'ivy))
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-project-search-path '("~/projects/")))
 
 (use-package counsel-projectile
   :ensure t

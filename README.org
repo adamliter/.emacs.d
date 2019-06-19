@@ -242,13 +242,14 @@ This package is an interface to =git= in Emacs.
 *** [[https://github.com/bbatsov/projectile][=projectile=]]
 
 #+BEGIN_SRC emacs-lisp
-    (use-package projectile
-      :ensure t
-      :pin melpa-stable
-      :bind (("C-c p" . projectile-command-map))
-      :config
-      (projectile-mode +1)
-      (setq projectile-completion-system 'ivy))
+  (use-package projectile
+    :ensure t
+    :pin melpa-stable
+    :bind (("C-c p" . projectile-command-map))
+    :config
+    (projectile-mode +1)
+    (setq projectile-completion-system 'ivy)
+    (setq projectile-project-search-path '("~/projects/")))
 
   (use-package counsel-projectile
     :ensure t
