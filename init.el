@@ -103,6 +103,10 @@
   (doom-themes-visual-bell-config)
   (doom-themes-treemacs-config)
   (doom-themes-org-config))
+(use-package doom-modeline
+  :ensure t
+  :hook
+  (after-init . doom-modeline-mode))
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status))
@@ -224,14 +228,6 @@
   (add-hook 'term-mode-hook #'eterm-256color-mode))
 (use-package all-the-icons
   :ensure t)
-(use-package spaceline
-  :ensure t
-  )
-
-(use-package spaceline-config
-  :ensure spaceline
-  :config
-  (spaceline-emacs-theme))
 (use-package fill-column-indicator
   :ensure t
   :config

@@ -207,6 +207,17 @@ This sets up =doom-themes= and sets the default theme to =doom-one=.
     (doom-themes-org-config))
 #+END_SRC
 
+*** [[https://github.com/seagle0128/doom-modeline][=doom-modeline=]]
+
+This sets up =doom-modeline=.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :hook
+    (after-init . doom-modeline-mode))
+#+END_SRC
+
 *** [[https://magit.vc/][=magit=]]
 
 This package is an interface to =git= in Emacs.
@@ -456,21 +467,6 @@ This sets up the =all-the-icons= package, which can be used by the
 #+BEGIN_SRC emacs-lisp
   (use-package all-the-icons
     :ensure t)
-#+END_SRC
-
-*** [[https://github.com/TheBB/spaceline][=spaceline=]]
-
-This installs =spaceline=
-
-#+BEGIN_SRC emacs-lisp
-  (use-package spaceline
-    :ensure t
-    )
-
-  (use-package spaceline-config
-    :ensure spaceline
-    :config
-    (spaceline-emacs-theme))
 #+END_SRC
 
 *** [[fci][=fill-column-indicator=]]
