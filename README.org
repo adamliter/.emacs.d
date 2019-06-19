@@ -587,7 +587,8 @@ This sets up and installs RefTeX for use with AUCTeX.
   (use-package reftex
     :after tex
     :config
-    (setq reftex-plug-into-AUCTeX t))
+    (setq reftex-plug-into-AUCTeX t)
+    (add-hook 'TeX-mode-hook 'turn-on-reftex))
 #+END_SRC
 
 *** [[https://github.com/politza/pdf-tools/][=pdf-tools=]]

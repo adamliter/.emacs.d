@@ -283,7 +283,8 @@
 (use-package reftex
   :after tex
   :config
-  (setq reftex-plug-into-AUCTeX t))
+  (setq reftex-plug-into-AUCTeX t)
+  (add-hook 'TeX-mode-hook 'turn-on-reftex))
 (use-package pdf-tools
   :ensure t
   :config
