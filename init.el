@@ -119,6 +119,18 @@
         '(("~/projects" . 3)
           ("~/config-files" . 1)
           ("~/Dropbox/linguistics" . 1))))
+(use-package projectile
+  :ensure t
+  :pin melpa-stable
+  :bind (("C-c p" . projectile-command-map))
+  :config
+  (projectile-mode +1)
+  (setq projectile-completion-system 'ivy))
+
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (counsel-projectile-mode))
 (use-package which-key
   :ensure t
   :config

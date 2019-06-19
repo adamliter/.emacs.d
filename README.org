@@ -230,6 +230,23 @@ This package is an interface to =git= in Emacs.
             ("~/Dropbox/linguistics" . 1))))
 #+END_SRC
 
+*** [[https://github.com/bbatsov/projectile][=projectile=]]
+
+#+BEGIN_SRC emacs-lisp
+    (use-package projectile
+      :ensure t
+      :pin melpa-stable
+      :bind (("C-c p" . projectile-command-map))
+      :config
+      (projectile-mode +1)
+      (setq projectile-completion-system 'ivy))
+
+    (use-package counsel-projectile
+      :ensure t
+      :config
+      (counsel-projectile-mode))
+#+END_SRC
+
 *** [[https://github.com/justbur/emacs-which-key][=which-key=]]
 
 This package shows you possible keybinding continuations after a delay,

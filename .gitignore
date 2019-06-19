@@ -41,6 +41,11 @@ auto/
 .org-id-locations
 *_archive
 
+# ----------------------------------------------------------------------
+# Ignore projectile stuff
+# ----------------------------------------------------------------------
+projectile-bookmarks.eld
+
 # Local Variables:
 # mode: conf
 # coding: utf-8
