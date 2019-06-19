@@ -179,6 +179,14 @@
                 (mode 16 16 :left :elide)
                 " "
                 filename-and-process))))
+(use-package ibuffer-vc
+  :ensure t
+  :config
+  (add-hook 'ibuffer-hook
+            (lambda ()
+              (ibuffer-vc-set-filter-groups-by-vc-root)
+              (unless (eq ibuffer-sorting-mode 'alphabetic)
+                (ibuffer-do-sort-by-alphabetic)))))
 (use-package ace-window
   :ensure t
   :bind (([remap other-window] . ace-window))

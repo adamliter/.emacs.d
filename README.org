@@ -288,12 +288,12 @@ which is useful in case you forget keybindings.
 *** =ibuffer=
 
 This sets up ~ibuffer~ as a replacement for ~list-buffers~. Buffers will
-be sorted by major mode in the ibuffer window (though I should
-investigate both [[https://github.com/purcell/ibuffer-vc][=ibuffer-vc=]] and [[https://github.com/purcell/ibuffer-projectile][=ibuffer-projectile=]]). Moreover,
-setting ~ibuffer-expert~ to ~t~ will prevent prompting for deletion of
-an unmodified buffer. This setup also prevents the display of empty
-filter groups, and, finally, it displays file sizes in a human readable
-format.
+be sorted by major mode in the ibuffer window (though I prefer to have
+things sorted by version control project; see =ibuffer-vc=
+below). Moreover, setting ~ibuffer-expert~ to ~t~ will prevent prompting
+for deletion of an unmodified buffer. This setup also prevents the
+display of empty filter groups, and, finally, it displays file sizes in
+a human readable format.
 
 #+BEGIN_SRC emacs-lisp
   (use-package ibuffer
@@ -319,6 +319,23 @@ format.
                   (mode 16 16 :left :elide)
                   " "
                   filename-and-process))))
+
+#+END_SRC
+
+*** [[https://github.com/purcell/ibuffer-vc][=ibuffer-vc=]]
+
+This extends =ibuffer= to allow the files to be grouped according to
+their version control parent root.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ibuffer-vc
+    :ensure t
+    :config
+    (add-hook 'ibuffer-hook
+              (lambda ()
+                (ibuffer-vc-set-filter-groups-by-vc-root)
+                (unless (eq ibuffer-sorting-mode 'alphabetic)
+                  (ibuffer-do-sort-by-alphabetic)))))
 
 #+END_SRC
 
