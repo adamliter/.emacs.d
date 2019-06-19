@@ -10,7 +10,6 @@
           ("melpa-stable" . "http://stable.melpa.org/packages/")
           ;("marmalade" . "http://marmalade-repo.org/packages/")
           ("org" . "http://orgmode.org/elpa/")
-          ("elpy" . "http://jorgenschaefer.github.io/packages/")
           ))
 
   ;; Check if we're on Emacs 24.4 or newer, if so, use the pinned package feature
@@ -24,7 +23,6 @@
   (package-initialize))
 (setq package-archive-priorities
       '(("org" . 30)
-        ("elpy" . 30)
         ("melpa-stable" . 20)
         ;("marmalade" . 10)
         ("gnu" . 10)
@@ -103,7 +101,7 @@
   :config
   (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
-  ;;(doom-themes-treemacs-config)
+  (doom-themes-treemacs-config)
   (doom-themes-org-config))
 (use-package magit
   :ensure t
@@ -131,6 +129,29 @@
   :ensure t
   :config
   (counsel-projectile-mode))
+(use-package treemacs
+  :ensure t
+  :defer t
+  :bind
+  (("M-0"       . treemacs-select-window)
+   ("C-x t 1"   . treemacs-delete-other-windows)
+   ("C-x t t"   . treemacs)
+   ("C-x t B"   . treemacs-bookmark)
+   ("C-x t C-t" . treemacs-find-file)
+   ("C-x t M-t" . treemacs-find-tag)))
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure t)
+
+(use-package treemacs-icons-dired
+  :after treemacs dired
+  :ensure t
+  :config (treemacs-icons-dired-mode))
+
+(use-package treemacs-magit
+  :after treemacs magit
+  :ensure t)
 (use-package which-key
   :ensure t
   :config
