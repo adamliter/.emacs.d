@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: exe-gl \begin{exe}
+# key: exegl
+# --
+\begin{exe}
+  \ex[$4]{%
+    \gll $1\\\\
+         $2\\\\
+         \trans `$3'${5: \\\\
+   \hfill \autocite[$7][$8]{${6:label$(unless yas-modified-p (mapconcat 'identity (reftex-citation 'dont-insert) ","))}}}}
+  \label{ex:$9}
+\end{exe}$0
