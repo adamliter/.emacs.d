@@ -255,6 +255,12 @@
   (setq TeX-source-correlate-start-server t)
   (add-hook 'TeX-after-compilation-finished-functions
             #'TeX-revert-document-buffer)
+  (setq LaTeX-section-label
+        '(("part" . "part:")
+          ("chapter" . "chap:")
+          ("section" . "sec:")
+          ("subsection" . "subsec:")
+          "subsubsection" . "subsubsec:"))
   (add-to-list
    'TeX-command-list
    '("Arara"
