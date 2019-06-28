@@ -859,6 +859,7 @@ that it will be available in all AUCTeX modes, since this (along with
     (setq TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view)))
     (setq TeX-view-program-selection '((output-pdf "PDF Tools")))
     (setq TeX-source-correlate-start-server t)
+    (setq TeX-save-query nil)
     (add-hook 'TeX-after-compilation-finished-functions
               #'TeX-revert-document-buffer)
     (setq LaTeX-section-label
