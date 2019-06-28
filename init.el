@@ -538,7 +538,7 @@ T - tag prefix
   (add-to-list
    'TeX-command-list
    '("Arara"
-     "arara %s"
+     "arara --verbose %s"
      TeX-run-command
      nil                       ; ask for confirmation
      t                         ; active in all modes
@@ -559,6 +559,14 @@ T - tag prefix
       nil
       t
       :help "Run LuaLaTeX"))
+  (add-to-list
+   'TeX-command-list
+   '("Make"
+     "make"
+     TeX-run-compile
+     nil
+     t
+     :help "Run make"))
   (add-hook 'TeX-mode-hook (lambda ()
                              (TeX-fold-mode 1))))
 (use-package reftex

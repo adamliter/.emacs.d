@@ -840,7 +840,8 @@ moreover, see [[https://emacs.stackexchange.com/a/22591/122][here]] for installi
 Next, I set the label prefixes that should be used when inserting a
 section with =C-c C-s=.
 
-The next configuration bit sets up AUCTeX to also be able to use [[https://github.com/cereda/arara][arara]].
+The next configuration bit sets up AUCTeX to also be able to use [[https://github.com/cereda/arara][arara]],
+XeLaTeX, LuaLaTeX, and GNU Make.
 
 And, finally, setting ~TeX-fold-mode~ to non nil enables the ability to
 fold stuff; moreover, setting it as part of the ~'TeX-mode-hook~ means
@@ -869,7 +870,7 @@ that it will be available in all AUCTeX modes, since this (along with
     (add-to-list
      'TeX-command-list
      '("Arara"
-       "arara %s"
+       "arara --verbose %s"
        TeX-run-command
        nil                       ; ask for confirmation
        t                         ; active in all modes
@@ -890,6 +891,14 @@ that it will be available in all AUCTeX modes, since this (along with
         nil
         t
         :help "Run LuaLaTeX"))
+    (add-to-list
+     'TeX-command-list
+     '("Make"
+       "make"
+       TeX-run-compile
+       nil
+       t
+       :help "Run make"))
     (add-hook 'TeX-mode-hook (lambda ()
                                (TeX-fold-mode 1))))
 #+END_SRC
