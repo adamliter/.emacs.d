@@ -106,13 +106,14 @@
       '(progn
          (define-key org-agenda-mode-map "v" 'hydra-org-agenda/body)))
     :pin org
-    :hydra (hydra-org-agenda
-            (:pre
-             (setq which-key-inhibit t)
-             :post
-             (setq which-key-inhibit nil)
-             :hint nil)
-            "
+    :hydra
+    (hydra-org-agenda
+     (:pre
+      (setq which-key-inhibit t)
+      :post
+      (setq which-key-inhibit nil)
+      :hint nil)
+     "
 Org agenda (_q_uit)
 
 ^Clock^      ^Visit entry^              ^Date^             ^Other^
@@ -135,58 +136,58 @@ _vp_ prev span  ^^                       ^^                 ^^
 _vr_ reset      ^^                       ^^                 ^^
 ^^              ^^                       ^^                 ^^
 "
-            ;; Entry
-            ("hA" org-agenda-archive-default)
-            ("hk" org-agenda-kill)
-            ("hp" org-agenda-priority)
-            ("hr" org-agenda-refile)
-            ("h:" org-agenda-set-tags)
-            ("ht" org-agenda-todo)
-            ;; Visit entry
-            ("o"   link-hint-open-link :exit t)
-            ("<tab>" org-agenda-goto :exit t)
-            ("TAB" org-agenda-goto :exit t)
-            ("SPC" org-agenda-show-and-scroll-up)
-            ("RET" org-agenda-switch-to :exit t)
-            ;; Date
-            ("dt" org-agenda-date-prompt)
-            ("dd" org-agenda-deadline)
-            ("+" org-agenda-do-date-later)
-            ("-" org-agenda-do-date-earlier)
-            ("ds" org-agenda-schedule)
-            ;; View
-            ("vd" org-agenda-day-view)
-            ("vw" org-agenda-week-view)
-            ("vt" org-agenda-fortnight-view)
-            ("vm" org-agenda-month-view)
-            ("vy" org-agenda-year-view)
-            ("vn" org-agenda-later)
-            ("vp" org-agenda-earlier)
-            ("vr" org-agenda-reset-view)
-            ;; Toggle mode
-            ("ta" org-agenda-archives-mode)
-            ("tA" (org-agenda-archives-mode 'files))
-            ("tr" org-agenda-clockreport-mode)
-            ("tf" org-agenda-follow-mode)
-            ("tl" org-agenda-log-mode)
-            ("td" org-agenda-toggle-diary)
-            ;; Filter
-            ("fc" org-agenda-filter-by-category)
-            ("fx" org-agenda-filter-by-regexp)
-            ("ft" org-agenda-filter-by-tag)
-            ("fr" org-agenda-filter-by-tag-refine)
-            ("fh" org-agenda-filter-by-top-headline)
-            ("fd" org-agenda-filter-remove-all)
-            ;; Clock
-            ("cq" org-agenda-clock-cancel)
-            ("cj" org-agenda-clock-goto :exit t)
-            ("ci" org-agenda-clock-in :exit t)
-            ("co" org-agenda-clock-out)
-            ;; Other
-            ("q" nil :exit t)
-            ("gd" org-agenda-goto-date)
-            ("." org-agenda-goto-today)
-            ("gr" org-agenda-redo)))
+     ;; Entry
+     ("hA" org-agenda-archive-default)
+     ("hk" org-agenda-kill)
+     ("hp" org-agenda-priority)
+     ("hr" org-agenda-refile)
+     ("h:" org-agenda-set-tags)
+     ("ht" org-agenda-todo)
+     ;; Visit entry
+     ("o"   link-hint-open-link :exit t)
+     ("<tab>" org-agenda-goto :exit t)
+     ("TAB" org-agenda-goto :exit t)
+     ("SPC" org-agenda-show-and-scroll-up)
+     ("RET" org-agenda-switch-to :exit t)
+     ;; Date
+     ("dt" org-agenda-date-prompt)
+     ("dd" org-agenda-deadline)
+     ("+" org-agenda-do-date-later)
+     ("-" org-agenda-do-date-earlier)
+     ("ds" org-agenda-schedule)
+     ;; View
+     ("vd" org-agenda-day-view)
+     ("vw" org-agenda-week-view)
+     ("vt" org-agenda-fortnight-view)
+     ("vm" org-agenda-month-view)
+     ("vy" org-agenda-year-view)
+     ("vn" org-agenda-later)
+     ("vp" org-agenda-earlier)
+     ("vr" org-agenda-reset-view)
+     ;; Toggle mode
+     ("ta" org-agenda-archives-mode)
+     ("tA" (org-agenda-archives-mode 'files))
+     ("tr" org-agenda-clockreport-mode)
+     ("tf" org-agenda-follow-mode)
+     ("tl" org-agenda-log-mode)
+     ("td" org-agenda-toggle-diary)
+     ;; Filter
+     ("fc" org-agenda-filter-by-category)
+     ("fx" org-agenda-filter-by-regexp)
+     ("ft" org-agenda-filter-by-tag)
+     ("fr" org-agenda-filter-by-tag-refine)
+     ("fh" org-agenda-filter-by-top-headline)
+     ("fd" org-agenda-filter-remove-all)
+     ;; Clock
+     ("cq" org-agenda-clock-cancel)
+     ("cj" org-agenda-clock-goto :exit t)
+     ("ci" org-agenda-clock-in :exit t)
+     ("co" org-agenda-clock-out)
+     ;; Other
+     ("q" nil :exit t)
+     ("gd" org-agenda-goto-date)
+     ("." org-agenda-goto-today)
+     ("gr" org-agenda-redo)))
 (advice-remove 'package-installed-p #'package-from-archive)
 (use-package doom-themes
   :ensure t
@@ -415,13 +416,14 @@ _vr_ reset      ^^                       ^^                 ^^
         ("s"  . pdf-occur)
         ("b"  . pdf-view-set-slice-from-bounding-box)
         ("r"  . pdf-view-reset-slice))
-  :hydra (hydra-pdftools
-          (:pre
-           (setq which-key-inhibit t)
-           :post
-           (setq which-key-inhibit nil)
-           :hint nil)
-          "
+  :hydra
+  (hydra-pdftools
+   (:pre
+    (setq which-key-inhibit t)
+    :post
+    (setq which-key-inhibit nil)
+    :hint nil)
+   "
                                                                    ╭───────────┐
     Move  History   Scale/Fit     Annotations  Search/Link    Do   │ PDF Tools │
 ╭──────────────────────────────────────────────────────────────────┴───────────╯
@@ -436,38 +438,38 @@ _vr_ reset      ^^                       ^^                 ^^
       ^^_G_^^
 --------------------------------------------------------------------------------
 "
-          ("\\" hydra-master/body "back")
-          ("<ESC>" nil "quit")
-          ("al" pdf-annot-list-annotations)
-          ("ad" pdf-annot-delete)
-          ("aa" pdf-annot-attachment-dired)
-          ("am" pdf-annot-add-markup-annotation)
-          ("at" pdf-annot-add-text-annotation)
-          ("y"  pdf-view-kill-ring-save)
-          ("+" pdf-view-enlarge :color red)
-          ("-" pdf-view-shrink :color red)
-          ("0" pdf-view-scale-reset)
-          ("H" pdf-view-fit-height-to-window)
-          ("W" pdf-view-fit-width-to-window)
-          ("P" pdf-view-fit-page-to-window)
-          ("n" pdf-view-next-page-command :color red)
-          ("p" pdf-view-previous-page-command :color red)
-          ("d" pdf-view-dark-minor-mode)
-          ("b" pdf-view-set-slice-from-bounding-box)
-          ("r" pdf-view-reset-slice)
-          ("g" pdf-view-first-page)
-          ("G" pdf-view-last-page)
-          ("e" pdf-view-goto-page)
-          ("o" pdf-outline)
-          ("s" pdf-occur)
-          ("i" pdf-misc-display-metadata)
-          ("u" pdf-view-revert-buffer)
-          ("F" pdf-links-action-perfom)
-          ("f" pdf-links-isearch-link)
-          ("B" pdf-history-backward :color red)
-          ("N" pdf-history-forward :color red)
-          ("l" image-forward-hscroll :color red)
-          ("h" image-backward-hscroll :color red)))
+   ("\\" hydra-master/body "back")
+   ("<ESC>" nil "quit")
+   ("al" pdf-annot-list-annotations)
+   ("ad" pdf-annot-delete)
+   ("aa" pdf-annot-attachment-dired)
+   ("am" pdf-annot-add-markup-annotation)
+   ("at" pdf-annot-add-text-annotation)
+   ("y"  pdf-view-kill-ring-save)
+   ("+" pdf-view-enlarge :color red)
+   ("-" pdf-view-shrink :color red)
+   ("0" pdf-view-scale-reset)
+   ("H" pdf-view-fit-height-to-window)
+   ("W" pdf-view-fit-width-to-window)
+   ("P" pdf-view-fit-page-to-window)
+   ("n" pdf-view-next-page-command :color red)
+   ("p" pdf-view-previous-page-command :color red)
+   ("d" pdf-view-dark-minor-mode)
+   ("b" pdf-view-set-slice-from-bounding-box)
+   ("r" pdf-view-reset-slice)
+   ("g" pdf-view-first-page)
+   ("G" pdf-view-last-page)
+   ("e" pdf-view-goto-page)
+   ("o" pdf-outline)
+   ("s" pdf-occur)
+   ("i" pdf-misc-display-metadata)
+   ("u" pdf-view-revert-buffer)
+   ("F" pdf-links-action-perfom)
+   ("f" pdf-links-isearch-link)
+   ("B" pdf-history-backward :color red)
+   ("N" pdf-history-forward :color red)
+   ("l" image-forward-hscroll :color red)
+   ("h" image-backward-hscroll :color red)))
 (use-package yasnippet
   :ensure t
   :demand t
