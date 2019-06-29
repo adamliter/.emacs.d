@@ -920,6 +920,11 @@ numbers in buffers for PDFs.
 I've also set up a Hydra for =pdf-tools= based on the [[https://github.com/abo-abo/hydra/wiki/PDF-Tools][Hydra from the
 project's wiki]].
 
+It unfortunately seems that something goes wrong when trying to use
+=use-package='s ~:bind~ and ~:map~ keywords for setting keys for
+~pdf-view-mode-map~ (see [[https://emacs.stackexchange.com/q/51295/122][here]]), so I've instead set the keybindings with
+~define-key~.
+
 #+BEGIN_SRC emacs-lisp
   (use-package pdf-tools
     :ensure t
@@ -930,28 +935,29 @@ project's wiki]].
     (add-hook 'pdf-view-mode-hook
               (lambda ()
                 (display-line-numbers-mode -1)))
-    :bind
-    (:map pdf-view-mode-map
-          ("\\" . hydra-pdftools/body)
-          ("<s-spc>" .  pdf-view-scroll-down-or-next-page)
-          ("g"  . pdf-view-first-page)
-          ("G"  . pdf-view-last-page)
-          ("l"  . image-forward-hscroll)
-          ("h"  . image-backward-hscroll)
-          ("j"  . pdf-view-next-page)
-          ("k"  . pdf-view-previous-page)
-          ("e"  . pdf-view-goto-page)
-          ("u"  . pdf-view-revert-buffer)
-          ("al" . pdf-annot-list-annotations)
-          ("ad" . pdf-annot-delete)
-          ("aa" . pdf-annot-attachment-dired)
-          ("am" . pdf-annot-add-markup-annotation)
-          ("at" . pdf-annot-add-text-annotation)
-          ("y"  . pdf-view-kill-ring-save)
-          ("i"  . pdf-misc-display-metadata)
-          ("s"  . pdf-occur)
-          ("b"  . pdf-view-set-slice-from-bounding-box)
-          ("r"  . pdf-view-reset-slice))
+    (add-hook 'pdf-annot-minor-mode-hook
+              (lambda ()
+                (display-line-numbers-mode -1)))
+    (define-key pdf-view-mode-map (kbd "\\") 'hydra-pdftools/body)
+    (define-key pdf-view-mode-map (kbd "<s-spc>") 'pdf-view-scroll-down-or-next-page)
+    (define-key pdf-view-mode-map (kbd "g") 'pdf-view-first-page)
+    (define-key pdf-view-mode-map (kbd "G") 'pdf-view-list-page)
+    (define-key pdf-view-mode-map (kbd "l") 'image-forward-hscroll)
+    (define-key pdf-view-mode-map (kbd "h") 'image-back-hscroll)
+    (define-key pdf-view-mode-map (kbd "j")  'pdf-view-next-page)
+    (define-key pdf-view-mode-map (kbd "k")  'pdf-view-previous-page)
+    (define-key pdf-view-mode-map (kbd "e")  'pdf-view-goto-page)
+    (define-key pdf-view-mode-map (kbd "u")  'pdf-view-revert-buffer)
+    (define-key pdf-view-mode-map (kbd "al") 'pdf-annot-list-annotations)
+    (define-key pdf-view-mode-map (kbd "ad") 'pdf-annot-delete)
+    (define-key pdf-view-mode-map (kbd "aa") 'pdf-annot-attachment-dired)
+    (define-key pdf-view-mode-map (kbd "am") 'pdf-annot-add-markup-annotation)
+    (define-key pdf-view-mode-map (kbd "at") 'pdf-annot-add-text-annotation)
+    (define-key pdf-view-mode-map (kbd "y")  'pdf-view-kill-ring-save)
+    (define-key pdf-view-mode-map (kbd "i")  'pdf-misc-display-metadata)
+    (define-key pdf-view-mode-map (kbd "s")  'pdf-occur)
+    (define-key pdf-view-mode-map (kbd "b")  'pdf-view-set-slice-from-bounding-box)
+    (define-key pdf-view-mode-map (kbd "r")  'pdf-view-reset-slice)
     :hydra
     (hydra-pdftools
      (:pre
