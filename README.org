@@ -1021,6 +1021,16 @@ It unfortunately seems that something goes wrong when trying to use
      ("h" image-backward-hscroll :color red)))
 #+END_SRC
 
+*** [[https://github.com/flycheck/flycheck][=flycheck=]]
+
+This sets up =flycheck= for syntax checking.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+#+END_SRC
+
 *** [[yasnippet][=YASnippet=]]
 
 This sets up =yasnippet=. ~:demand t~ ensures it is loaded at startup,

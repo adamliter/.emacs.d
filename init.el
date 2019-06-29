@@ -661,6 +661,9 @@ T - tag prefix
    ("N" pdf-history-forward :color red)
    ("l" image-forward-hscroll :color red)
    ("h" image-backward-hscroll :color red)))
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
 (use-package yasnippet
   :ensure t
   :demand t
