@@ -557,12 +557,19 @@ T - tag prefix
    'TeX-command-list
    '("Make"
      "make"
-     TeX-run-compile
+     TeX-run-TeX
      nil
      t
      :help "Run make"))
+  (defun adamliter-TeX-make ()
+    "Interactive function for running GNU Make on a (La)TeX file."
+    (interactive)
+    (TeX-command-sequence '("Make" "View") t))
   (add-hook 'TeX-mode-hook (lambda ()
-                             (TeX-fold-mode 1))))
+                             (TeX-fold-mode 1)))
+  :bind
+  (:map TeX-mode-map
+        ("C-c C-m" . adamliter-TeX-make)))
 (use-package reftex
   :after tex
   :config
