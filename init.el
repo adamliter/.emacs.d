@@ -664,6 +664,18 @@ T - tag prefix
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
+(use-package elpy
+  :ensure t
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
+(use-package pipenv
+  :hook
+  (python-mode . pipenv-mode)
+  :init
+  (setq
+   pipenv-projectile-after-switch-function
+   #'pipenv-projectile-after-switch-extended))
 (use-package yasnippet
   :ensure t
   :demand t
