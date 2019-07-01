@@ -228,6 +228,7 @@ _vr_ reset      ^^                       ^^                 ^^
   (counsel-projectile-mode))
 (use-package treemacs
   :ensure t
+  :pin melpa
   :defer t
   :bind
   (("M-0"       . treemacs-select-window)
