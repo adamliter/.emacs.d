@@ -559,6 +559,9 @@ T - tag prefix
   (setq ivy-wrap t))
 (use-package counsel
   :ensure t
+  :bind
+  ("C-c k" . counsel-rg)
+  ("C-c u" . counsel-unicode-char)
   :config
   (counsel-mode t))
 (use-package swiper
