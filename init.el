@@ -554,6 +554,7 @@ T - tag prefix
   :config
   (ivy-mode t)
   (setq ivy-use-virtual-buffers t)
+  (setq ivy-use-selectable-prompt t)
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-wrap t))
 (use-package counsel

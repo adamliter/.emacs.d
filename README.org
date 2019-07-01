@@ -759,6 +759,10 @@ and buffer names.
 Moreover, setting =ivy-use-virtual-buffers= to something that is non nil
 will include virtual buffers in the completion list.
 
+Setting =ivy-use-selectable-prompt= to =t= allows for the entering input
+that matches one of the potential candidates without needing to press
+=C-M-j=.
+
 =ivy-count-format= specifies how the number of candidates and the
 current candidate are displayed.
 
@@ -776,6 +780,7 @@ it.
     :config
     (ivy-mode t)
     (setq ivy-use-virtual-buffers t)
+    (setq ivy-use-selectable-prompt t)
     (setq ivy-count-format "(%d/%d) ")
     (setq ivy-wrap t))
 #+END_SRC
