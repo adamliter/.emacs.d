@@ -410,19 +410,19 @@ This package is an interface to =git= in Emacs.
   ^^^^       Find               ^^   Search            ^^^^       Buffers               ^^   Cache                     ^^^^       Other
   ^^^^--------------------------^^---------------------^^^^-----------------------------^^------------------------------------------------------------------
   _f_/_s-f_: file               _a_: ag                ^^    _i_: Ibuffer               _c_: cache clear               ^^    _E_: edit project's .dir-locals.el
-  ^^    _F_: file dwim          _o_: multi-occur       ^^    _b_: switch to buffer      _x_: remove known project      _s-p_/_p_: switch to other project
-  ^^    _d_: file curr dir      ^^                     _K_/_s-k_: kill all buffers      _X_: cleanup non-existing      ^^    _g_: switch to Magit status of other project
+  ^^    _F_: file dwim          _R_: rg                ^^    _b_: switch to buffer      _x_: remove known project      _s-p_/_p_: switch to other project
+  ^^    _d_: file curr dir      _o_: multi-occur       _K_/_s-k_: kill all buffers      _X_: cleanup non-existing      ^^    _g_: switch to Magit status of other project
   ^^    _r_: recent file        ^^                     ^^^^                             _z_: cache current             ^^    _P_: switch to an open project
   ^^    ^^                      ^^                     ^^^^                             ^^                             ^^    _D_: find dir
   "
-     ("a"   projectile-ag)
-     ("b"   projectile-switch-to-buffer)
+     ("a"   counsel-projectile-ag)
+     ("b"   counsel-projectile-switch-to-buffer)
      ("c"   projectile-invalidate-cache)
      ("d"   projectile-find-file-in-directory)
-     ("f"   projectile-find-file)
-     ("s-f" projectile-find-file)
-     ("F"   projectile-find-file-dwim)
-     ("D"   projectile-find-dir)
+     ("f"   counsel-projectile-find-file)
+     ("s-f" counsel-projectile-find-file)
+     ("F"   counsel-projectile-find-file-dwim)
+     ("D"   counsel-projectile-find-dir)
      ("E"   projectile-edit-dir-locals)
      ("g"   adamliter/projectile-switch-project-magit-status)
      ("i"   projectile-ibuffer)
@@ -430,11 +430,12 @@ This package is an interface to =git= in Emacs.
      ("s-k" projectile-kill-buffers)
      ("m"   projectile-multi-occur)
      ("o"   projectile-multi-occur)
-     ("p"   projectile-switch-project)
-     ("s-p" projectile-switch-project)
+     ("p"   counsel-projectile-switch-project)
+     ("s-p" counsel-projectile-switch-project)
      ("P"   projectile-switch-open-project)
-     ("s"   projectile-switch-project)
+     ("s"   counsel-projectile-switch-project)
      ("r"   projectile-recentf)
+     ("R"   counsel-projectile-rg)
      ("x"   projectile-remove-known-project)
      ("X"   projectile-cleanup-known-projects)
      ("z"   projectile-cache-current-file)
