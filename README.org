@@ -1207,6 +1207,15 @@ preventing Emacs from writing anything to =init.el=.
   (setq custom-file (make-temp-file "emacs-custom"))
 #+END_SRC
 
+Make the initial Emacs frame maximized, and then make any subsequent
+frames have a default maximum height and width of 100 characters.
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+  (add-to-list 'default-frame-alist '(fullscreen . fullheight))
+  (add-to-list 'default-frame-alist '(width . 100))
+#+END_SRC
+
 * Appearance
 
 ** Hide some default stuff
