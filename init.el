@@ -584,6 +584,7 @@ T - tag prefix
 (use-package pdf-tools
   :ensure t
   :after hydra
+  :pin melpa
   :config
   (pdf-tools-install)
   (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
