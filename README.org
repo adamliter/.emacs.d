@@ -324,6 +324,7 @@ This sets up =doom-modeline=.
 #+BEGIN_SRC emacs-lisp
   (use-package doom-modeline
     :ensure t
+    :pin melpa-stable
     :hook
     (after-init . doom-modeline-mode))
 #+END_SRC

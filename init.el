@@ -196,6 +196,7 @@ _vr_ reset      ^^                       ^^                 ^^
   (doom-themes-org-config))
 (use-package doom-modeline
   :ensure t
+  :pin melpa-stable
   :hook
   (after-init . doom-modeline-mode))
 (use-package magit
