@@ -356,11 +356,90 @@ This package is an interface to =git= in Emacs.
   (use-package projectile
     :ensure t
     :pin melpa-stable
-    :bind (("C-c p" . projectile-command-map))
+    :after hydra
+    :bind (("C-c p" . hydra-projectile/body))
     :config
     (projectile-mode +1)
+    (setq projectile-require-project-root nil)
+    (setq projectile-enable-caching t)
     (setq projectile-completion-system 'ivy)
-    (setq projectile-project-search-path '("~/projects/")))
+    (setq projectile-project-search-path '("~/projects/"))
+    (defun adamliter/projectile-switch-project-magit-status ()
+      "Switch to other project and open Magit status there."
+      (interactive)
+      (let ((projectile-switch-project-action #'magit-status))
+        (call-interactively #'projectile-switch-project)))
+    (defun adamliter/kill-non-project-buffers (&optional kill-special)
+      "Kill buffers that do not belong to a `projectile' project.
+  With prefix argument (`C-u'), also kill the special buffers."
+      (interactive "P")
+      (let ((bufs (buffer-list (selected-frame))))
+        (dolist (buf bufs)
+          (with-current-buffer buf
+            (let ((buf-name (buffer-name buf)))
+              (when (or (null (projectile-project-p))
+                        (and kill-special
+                             (string-match "^\*" buf-name)))
+                ;; Preserve buffers with names starting with *scratch or *Messages
+                (unless (string-match "^\\*\\(\\scratch\\|Messages\\)" buf-name)
+                  (message "Killing buffer %s" buf-name)
+                  (kill-buffer buf))))))))
+    :hydra
+    (hydra-projectile-other-window
+     (:pre
+          (setq which-key-inhibit t)
+      :post
+      (setq which-key-inhibit nil)
+      :color teal
+      :hint nil)
+     "projectile-other-window"
+     ("b" projectile-switch-to-buffer-other-window "buffer")
+     ("D" projectile-find-dir-other-window "dir")
+     ("f" projectile-find-file-other-window "file")
+     ("F" projectile-find-file-dwim-other-window "file dwim")
+     ("q" nil "cancel" :color blue))
+    (hydra-projectile
+     (:pre
+      (setq which-key-inhibit t)
+      :post
+      (setq which-key-inhibit nil)
+      :color teal
+      :hint nil)
+     "
+       PROJECTILE: %(if (fboundp 'projectile-project-root) (projectile-project-root) \"TBD\")
+  ^^^^       Find               ^^   Search            ^^^^       Buffers               ^^   Cache                     ^^^^       Other
+  ^^^^--------------------------^^---------------------^^^^-----------------------------^^------------------------------------------------------------------
+  _f_/_s-f_: file               _a_: ag                ^^    _i_: Ibuffer               _c_: cache clear               ^^    _E_: edit project's .dir-locals.el
+  ^^    _F_: file dwim          _o_: multi-occur       ^^    _b_: switch to buffer      _x_: remove known project      _s-p_/_p_: switch to other project
+  ^^    _d_: file curr dir      ^^                     _K_/_s-k_: kill all buffers      _X_: cleanup non-existing      ^^    _g_: switch to Magit status of other project
+  ^^    _r_: recent file        ^^                     ^^^^                             _z_: cache current             ^^    _P_: switch to an open project
+  ^^    ^^                      ^^                     ^^^^                             ^^                             ^^    _D_: find dir
+  "
+     ("a"   projectile-ag)
+     ("b"   projectile-switch-to-buffer)
+     ("c"   projectile-invalidate-cache)
+     ("d"   projectile-find-file-in-directory)
+     ("f"   projectile-find-file)
+     ("s-f" projectile-find-file)
+     ("F"   projectile-find-file-dwim)
+     ("D"   projectile-find-dir)
+     ("E"   projectile-edit-dir-locals)
+     ("g"   adamliter/projectile-switch-project-magit-status)
+     ("i"   projectile-ibuffer)
+     ("K"   projectile-kill-buffers)
+     ("s-k" projectile-kill-buffers)
+     ("m"   projectile-multi-occur)
+     ("o"   projectile-multi-occur)
+     ("p"   projectile-switch-project)
+     ("s-p" projectile-switch-project)
+     ("P"   projectile-switch-open-project)
+     ("s"   projectile-switch-project)
+     ("r"   projectile-recentf)
+     ("x"   projectile-remove-known-project)
+     ("X"   projectile-cleanup-known-projects)
+     ("z"   projectile-cache-current-file)
+     ("4"   hydra-projectile-other-window/body "other window")
+     ("q" nil "cancel" :color blue)))
 
   (use-package counsel-projectile
     :ensure t
