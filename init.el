@@ -646,11 +646,11 @@ T - tag prefix
      nil
      t
      :help "Run make"))
-  (defun adamliter-TeX-make ()
+  (defun adamliter/TeX-make ()
     "Interactive function for running GNU Make on a (La)TeX file."
     (interactive)
     (TeX-command-sequence '("Make" "View") t))
-  (defun adamliter-TeX-arara ()
+  (defun adamliter/TeX-arara ()
     "Interactive function for running Arara on a (La)TeX file."
     (interactive)
     (TeX-command-sequence '("Arara" "View") t))
@@ -658,8 +658,8 @@ T - tag prefix
                              (TeX-fold-mode 1)))
   :bind
   (:map TeX-mode-map
-        ("C-c C-m" . adamliter-TeX-make)
-        ("C-c M-a" . adamliter-TeX-arara)))
+        ("C-c C-m" . adamliter/TeX-make)
+        ("C-c M-a" . adamliter/TeX-arara)))
 (use-package reftex
   :after tex
   :config
