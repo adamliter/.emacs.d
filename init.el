@@ -587,6 +587,9 @@ T - tag prefix
   :config
   (setq-default fill-column 72)
   (add-hook 'markdown-mode-hook 'fci-mode))
+(use-package csv-mode
+  :ensure t
+  :mode ("\\.csv\\'" . csv-mode))
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)

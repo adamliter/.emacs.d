@@ -876,6 +876,14 @@ the end of the line, after the column rule.
     (add-hook 'markdown-mode-hook 'fci-mode))
 #+END_SRC
 
+*** [[https://www.emacswiki.org/emacs/CsvMode][=csv-mode=]]
+
+#+BEGIN_SRC emacs-lisp
+  (use-package csv-mode
+    :ensure t
+    :mode ("\\.csv\\'" . csv-mode))
+#+END_SRC
+
 *** [[markdown-mode][=markdown-mode=]]
 
 I use =markdown-mode= for editing files that end in =.md=, =.mdown=, or
