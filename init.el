@@ -47,7 +47,7 @@
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture)
-         ("C-c b" . org-iswitchb)
+         ("C-c b" . org-switchb)
          ("C-c C-w" . org-refile)
          ("C-c C-x C-o" . org-clock-out))
   :mode ("\\.org\\'" . org-mode)
