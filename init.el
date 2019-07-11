@@ -190,10 +190,27 @@ _vr_ reset      ^^                       ^^                 ^^
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (doom-themes-treemacs-config)
   (doom-themes-org-config))
+(setq adamliter/themes '(doom-one doom-one-light))
+(setq adamliter/themes-index 0)
+
+(defun adamliter/cycle-theme ()
+  (interactive)
+  (setq adamliter/themes-index (% (1+ adamliter/themes-index) (length adamliter/themes)))
+  (adamliter/load-indexed-theme))
+
+(defun adamliter/load-indexed-theme ()
+  (adamliter/try-load-theme (nth adamliter/themes-index adamliter/themes)))
+
+(defun adamliter/try-load-theme (theme)
+  (if (ignore-errors (load-theme theme :no-confirm))
+      (mapcar #'disable-theme (remove theme custom-enabled-themes))
+    (message "Unable to find theme file for ‘%s’" theme)))
+
+(adamliter/load-indexed-theme)
+(global-set-key (kbd "C-c M-t") 'adamliter/cycle-theme)
 (use-package doom-modeline
   :ensure t
   :pin melpa-stable
