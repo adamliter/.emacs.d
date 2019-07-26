@@ -352,6 +352,18 @@ This sets up =doom-modeline=.
     (after-init . doom-modeline-mode))
 #+END_SRC
 
+*** [[https://github.com/zk-phi/symon][=symon=]]
+
+This sets up =symon=, a system monitor.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package symon
+    :ensure t
+    :pin melpa
+    :hook
+    (after-init . symon-mode))
+#+END_SRC
+
 *** [[https://magit.vc/][=magit=]]
 
 This package is an interface to =git= in Emacs.

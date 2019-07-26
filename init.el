@@ -216,6 +216,11 @@ _vr_ reset      ^^                       ^^                 ^^
   :pin melpa-stable
   :hook
   (after-init . doom-modeline-mode))
+(use-package symon
+  :ensure t
+  :pin melpa
+  :hook
+  (after-init . symon-mode))
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status))
