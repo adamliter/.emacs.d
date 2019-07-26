@@ -806,6 +806,10 @@ T - tag prefix
                   (yas-reload-all)))))
   :config
   (yas-global-mode t))
+(use-package ws-butler
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'ws-butler-mode))
 (setq initial-major-mode 'text-mode)
 (setq ring-bell-function 'ignore)
 (defalias 'yes-or-no-p 'y-or-n-p)

@@ -1221,6 +1221,27 @@ file.
 My snippets are stored in =~/.emacs.d/snippets=, which is one of the
 default locations that is checked for snippets (see ~yas-snippet-dirs~).
 
+*** [[https://github.com/lewang/ws-butler][=ws-butler=]]
+
+This sets up =ws-butler=, which trims trailing white space on lines that
+have been touched. It also respects ~require-final-newline~.
+
+Note that I stopped globally deleting trailing white space on save in
+93123e8ab1661c157943f517a89807e97c8f82b0 because this messed with
+editing patches via ~git add -p~; white space would be trimmed, nearly
+always preventing the patch from applying cleanly.
+
+The mode used for editing patches is =diff-mode=, which is derived from
+=fundamental-mode=, so it should be safe to only enable =ws-butler= in
+modes derived from =prog-mode=.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ws-butler
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook #'ws-butler-mode))
+#+END_SRC
+
 * Preferences
 
 Set the initial major mode for the =*scratch*= buffer to =text-mode=.
