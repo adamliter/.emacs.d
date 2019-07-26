@@ -245,7 +245,7 @@ _vr_ reset      ^^                       ^^                 ^^
   (setq projectile-require-project-root nil)
   (setq projectile-enable-caching t)
   (setq projectile-completion-system 'ivy)
-  (setq projectile-project-search-path '("~/projects/"))
+  (setq projectile-project-search-path '("~/projects/" "~/Dropbox/Research"))
   (defun adamliter/projectile-switch-project-magit-status ()
     "Switch to other project and open Magit status there."
     (interactive)
