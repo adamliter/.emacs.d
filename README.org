@@ -364,6 +364,21 @@ This sets up =symon=, a system monitor.
     (after-init . symon-mode))
 #+END_SRC
 
+*** [[https://github.com/company-mode/company-mode][=company=]]
+
+This sets up [[https://company-mode.github.io/][=company-mode=]] for autocompletion.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t
+    :config
+    (setq company-tooltip-align-annotations t)
+    (setq company-show-numbers t)
+    (setq company-tooltip-limit 20)
+    (setq company-idle-delay .3)
+    (add-hook 'after-init-hook 'global-company-mode))
+#+END_SRC
+
 *** [[https://magit.vc/][=magit=]]
 
 This package is an interface to =git= in Emacs.
@@ -1042,6 +1057,31 @@ that it will be available in all AUCTeX modes, since this (along with
           ("C-c M-a" . adamliter/TeX-arara)))
 #+END_SRC
 
+*** [[https://github.com/alexeyr/company-auctex][=auctex-company=]]
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company-auctex
+    :ensure t
+    :hook
+    (latex-mode . (company-auctex-init)))
+#+END_SRC
+
+*** [[https://github.com/vspinu/company-math][=company-math=]]
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company-math
+    :ensure t
+    :hook
+    (latex-mode . (lambda ()
+                    (add-to-list
+                     (make-local-variable 'company-backends)
+                     '(company-math-symbols-unicode))))
+    (org-mode . (lambda ()
+                  (add-to-list
+                   (make-local-variable 'company-backends)
+                   '(company-math-symbols-unicode)))))
+#+END_SRC
+
 *** [[https://www.gnu.org/software/auctex/reftex.html][=reftex=]]
 
 This sets up and installs RefTeX for use with AUCTeX.
@@ -1052,6 +1092,22 @@ This sets up and installs RefTeX for use with AUCTeX.
     :config
     (setq reftex-plug-into-AUCTeX t)
     (add-hook 'TeX-mode-hook 'turn-on-reftex))
+#+END_SRC
+
+*** [[https://github.com/TheBB/company-reftex][=company-reftex=]]
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company-reftex
+    :ensure t
+    :hook
+    (latex-mode . (lambda ()
+                    (add-to-list
+                     (make-local-variable 'company-backends)
+                     '(company-reftex-labels company-reftex-citations))))
+    (org-mode . (lambda ()
+                  (add-to-list
+                   (make-local-variable 'company-backends)
+                   '(company-reftex-labels company-reftex-citations)))))
 #+END_SRC
 
 *** [[https://github.com/politza/pdf-tools/][=pdf-tools=]]

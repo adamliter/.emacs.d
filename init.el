@@ -221,6 +221,14 @@ _vr_ reset      ^^                       ^^                 ^^
   :pin melpa
   :hook
   (after-init . symon-mode))
+(use-package company
+  :ensure t
+  :config
+  (setq company-tooltip-align-annotations t)
+  (setq company-show-numbers t)
+  (setq company-tooltip-limit 20)
+  (setq company-idle-delay .3)
+  (add-hook 'after-init-hook 'global-company-mode))
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status))
@@ -686,11 +694,37 @@ T - tag prefix
   (:map TeX-mode-map
         ("C-c C-m" . adamliter/TeX-make)
         ("C-c M-a" . adamliter/TeX-arara)))
+(use-package company-auctex
+  :ensure t
+  :hook
+  (latex-mode . (company-auctex-init)))
+(use-package company-math
+  :ensure t
+  :hook
+  (latex-mode . (lambda ()
+                  (add-to-list
+                   (make-local-variable 'company-backends)
+                   '(company-math-symbols-unicode))))
+  (org-mode . (lambda ()
+                (add-to-list
+                 (make-local-variable 'company-backends)
+                 '(company-math-symbols-unicode)))))
 (use-package reftex
   :after tex
   :config
   (setq reftex-plug-into-AUCTeX t)
   (add-hook 'TeX-mode-hook 'turn-on-reftex))
+(use-package company-reftex
+  :ensure t
+  :hook
+  (latex-mode . (lambda ()
+                  (add-to-list
+                   (make-local-variable 'company-backends)
+                   '(company-reftex-labels company-reftex-citations))))
+  (org-mode . (lambda ()
+                (add-to-list
+                 (make-local-variable 'company-backends)
+                 '(company-reftex-labels company-reftex-citations)))))
 (use-package pdf-tools
   :ensure t
   :after hydra
