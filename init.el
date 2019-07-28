@@ -812,6 +812,9 @@ T - tag prefix
    ("N" pdf-history-forward :color red)
    ("l" image-forward-hscroll :color red)
    ("h" image-backward-hscroll :color red)))
+(use-package ess
+  :ensure t
+  :pin melpa)
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))

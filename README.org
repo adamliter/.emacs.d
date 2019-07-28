@@ -1216,6 +1216,20 @@ It unfortunately seems that something goes wrong when trying to use
      ("h" image-backward-hscroll :color red)))
 #+END_SRC
 
+*** [[https://github.com/emacs-ess/ESS][=ess=]]
+
+This sets up [[http://ess.r-project.org/][ESS]]. The (as of time of writing) unreleased version 19 of
+ESS involves a significant overhaul of ESS, eliminating the smart
+underscore behavior (which I don't want), sets up ESS to do keybindings
+in a more modern way, among other things. This is why I have it pinned
+to MELPA.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ess
+    :ensure t
+    :pin melpa)
+#+END_SRC
+
 *** [[https://github.com/flycheck/flycheck][=flycheck=]]
 
 This sets up =flycheck= for syntax checking.
