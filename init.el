@@ -793,6 +793,9 @@ T - tag prefix
   (setq
    pipenv-projectile-after-switch-function
    #'pipenv-projectile-after-switch-extended))
+(use-package docker
+  :ensure t
+  :bind ("C-c d" . docker))
 (use-package yasnippet
   :ensure t
   :demand t
