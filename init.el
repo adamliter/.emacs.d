@@ -221,18 +221,21 @@ _vr_ reset      ^^                       ^^                 ^^
   (add-hook 'after-init-hook 'global-company-mode))
 (use-package magit
   :ensure t
+  :pin melpa
   :bind (("C-x g" . magit-status))
   :config
   (setq git-commit-summary-max-length 50)
   (setq git-commit-fill-column 72)
-  (setq magit-log-arguments (quote ("--graph"
-                                    "--decorate"
-                                    "--color")))
-  (setq magit-commit-arguments (quote ("--gpg-sign=98723A2089026CD6")))
   (setq magit-repository-directories
         '(("~/projects" . 3)
           ("~/config-files" . 1)
           ("~/Dropbox/linguistics" . 1))))
+(use-package forge
+  :ensure t
+  :pin melpa
+  :after magit
+  :config
+  (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo" "~/.netrc")))
 (use-package projectile
   :ensure t
   :pin melpa-stable

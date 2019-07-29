@@ -372,18 +372,35 @@ This package is an interface to =git= in Emacs.
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
+    :pin melpa
     :bind (("C-x g" . magit-status))
     :config
     (setq git-commit-summary-max-length 50)
     (setq git-commit-fill-column 72)
-    (setq magit-log-arguments (quote ("--graph"
-                                      "--decorate"
-                                      "--color")))
-    (setq magit-commit-arguments (quote ("--gpg-sign=98723A2089026CD6")))
     (setq magit-repository-directories
           '(("~/projects" . 3)
             ("~/config-files" . 1)
             ("~/Dropbox/linguistics" . 1))))
+#+END_SRC
+
+*** [[https://github.com/magit/forge][=forge=]]
+
+This sets up =forge=, which provides an interface to =git= forges like
+[[https://github.com][GitHub]] and [[https://gitlab.com][GitLab]].
+
+The variable ~auth-sources~ is defined in ~auth-source.el~, which is
+part of GNU Emacs. It handles storing secrets and passwords. By setting
+the first member of ~auth-sources~ to =~/.authinfo.gpg=, this will
+ensure that =forge= stores tokens for accessing forges in an encrypted
+file.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package forge
+    :ensure t
+    :pin melpa
+    :after magit
+    :config
+    (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo" "~/.netrc")))
 #+END_SRC
 
 *** [[https://github.com/bbatsov/projectile][=projectile=]]
