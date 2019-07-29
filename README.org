@@ -1305,6 +1305,19 @@ file.
 My snippets are stored in =~/.emacs.d/snippets=, which is one of the
 default locations that is checked for snippets (see ~yas-snippet-dirs~).
 
+*** [[https://github.com/kyanagi/scratch-ext-el][=scratch-ext=]]
+
+This sets up =scratch-ext=, which provides several nice features around
+the scratch buffer, including recreating the scratch buffer whenever it
+is killed or saved to a file, restoring scratch buffer from previous
+session, /etc./.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package scratch-ext
+    :ensure t
+    :hook (after-init . scratch-ext-restore-last-scratch))
+#+END_SRC
+
 *** [[https://github.com/lewang/ws-butler][=ws-butler=]]
 
 This sets up =ws-butler=, which trims trailing white space on lines that
@@ -1328,10 +1341,10 @@ modes derived from =prog-mode=.
 
 * Preferences
 
-Set the initial major mode for the =*scratch*= buffer to =text-mode=.
+Set the initial major mode for the =*scratch*= buffer to =org-mode=.
 
 #+BEGIN_SRC emacs-lisp
-  (setq initial-major-mode 'text-mode)
+  (setq initial-major-mode 'org-mode)
 #+END_SRC
 
 Let's get rid of the error bell.
