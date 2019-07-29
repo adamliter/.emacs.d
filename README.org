@@ -1230,7 +1230,9 @@ to MELPA.
 #+BEGIN_SRC emacs-lisp
   (use-package ess
     :ensure t
-    :pin melpa)
+    :pin melpa
+    :config
+    (setq ess-style 'RStudio))
 #+END_SRC
 
 *** [[https://github.com/flycheck/flycheck][=flycheck=]]

@@ -807,7 +807,9 @@ T - tag prefix
    ("h" image-backward-hscroll :color red)))
 (use-package ess
   :ensure t
-  :pin melpa)
+  :pin melpa
+  :config
+  (setq ess-style 'RStudio))
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
