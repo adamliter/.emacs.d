@@ -4,20 +4,10 @@
 (when (>= emacs-major-version 24)
   (require 'package)
   (setq package-archives
-        '(("ELPA" . "http://tromey.com/elpa/")
-          ("gnu" . "http://elpa.gnu.org/packages/")
+        '(("gnu" . "http://elpa.gnu.org/packages/")
           ("melpa" . "http://melpa.org/packages/")
           ("melpa-stable" . "http://stable.melpa.org/packages/")
-          ;("marmalade" . "http://marmalade-repo.org/packages/")
           ("org" . "http://orgmode.org/elpa/")))
-
-  ;; Check if we're on Emacs 24.4 or newer, if so, use the pinned package feature
-  (when (boundp 'package-pinned-packages)
-    (setq package-pinned-packages
-          '((org . "org")
-            (magit . "melpa-stable")
-            (markdown-mode . "melpa-stable"))))
-
   (package-initialize))
 (setq package-archive-priorities
       '(("org" . 30)
