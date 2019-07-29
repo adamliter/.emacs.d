@@ -817,6 +817,7 @@ T - tag prefix
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 (use-package pipenv
+  :ensure t
   :hook
   (python-mode . pipenv-mode)
   :init

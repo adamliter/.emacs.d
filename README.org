@@ -1261,6 +1261,7 @@ This sets up =pipenv=, which is a porcelain for [[https://pipenv.readthedocs.io/
 
 #+BEGIN_SRC emacs-lisp
   (use-package pipenv
+    :ensure t
     :hook
     (python-mode . pipenv-mode)
     :init
