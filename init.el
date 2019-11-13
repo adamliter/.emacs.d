@@ -812,6 +812,7 @@ T - tag prefix
   (setq ess-style 'RStudio))
 (use-package flycheck
   :ensure t
+  :pin melpa
   :init (global-flycheck-mode))
 (use-package elpy
   :ensure t
