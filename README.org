@@ -299,14 +299,15 @@ This sets up =doom-themes= and sets the default theme to =doom-one=.
     :config
     (doom-themes-visual-bell-config)
     (doom-themes-treemacs-config)
-    (doom-themes-org-config))
+    (doom-themes-org-config)
+    (load-theme 'doom-one t))
 #+END_SRC
 
 This creates a function for switching between =doom-one= and
 =doom-one-light=, inspired by [[https://emacs.stackexchange.com/a/26981/122][this answer on Emacs.SE]].
 
 #+BEGIN_SRC emacs-lisp
-  (setq adamliter/themes '(doom-one doom-one-light))
+  (setq adamliter/themes '(doom-one-light doom-one))
   (setq adamliter/themes-index 0)
 
   (defun adamliter/cycle-theme ()

@@ -182,8 +182,9 @@ _vr_ reset      ^^                       ^^                 ^^
   :config
   (doom-themes-visual-bell-config)
   (doom-themes-treemacs-config)
-  (doom-themes-org-config))
-(setq adamliter/themes '(doom-one doom-one-light))
+  (doom-themes-org-config)
+  (load-theme 'doom-one t))
+(setq adamliter/themes '(doom-one-light doom-one))
 (setq adamliter/themes-index 0)
 
 (defun adamliter/cycle-theme ()
