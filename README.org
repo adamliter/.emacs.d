@@ -338,18 +338,6 @@ This sets up =doom-modeline=.
     (after-init . doom-modeline-mode))
 #+END_SRC
 
-*** [[https://github.com/zk-phi/symon][=symon=]]
-
-This sets up =symon=, a system monitor.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package symon
-    :ensure t
-    :pin melpa
-    :hook
-    (after-init . symon-mode))
-#+END_SRC
-
 *** [[https://github.com/company-mode/company-mode][=company=]]
 
 This sets up [[https://company-mode.github.io/][=company-mode=]] for autocompletion.
